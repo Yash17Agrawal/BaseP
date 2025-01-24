@@ -1,0 +1,49 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres:17
+    container_name: db
+    volumes:
+      - ../db:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    ports:
+      - "5432:5432"
+  backend:
+    container_name: backend
+    env_file:
+      - .env.dev
+    # build: .
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile
+    # volumes:
+    #   - ../:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  # frontend:
+  #   container_name: frontend
+  #   build: ./webapp/frontend/
+  #   command: yarn start
+  #   depends_on:
+  #     - db
+  #     - backend
+  #   volumes:
+  #     - ./webapp/frontend/:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    logging:
+      driver: "none"
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
