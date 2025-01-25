@@ -2,18 +2,35 @@ from core.interfaces.product_repository import ProductRepositoryInterface
 from store.models import Product
 from core.entities.product import Product as ProductEntity
 
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class ProductRepository(ProductRepositoryInterface):
-    def get_by_id(self, product_id: int):
-        product = Product.objects.get(id=product_id)
+    def get_by_id(self, product_id: int) -> Product | None:
+        try:
+            return Product.objects.get(id=product_id)
+        except ObjectDoesNotExist:
+            return None
         # this is discouraged
-        return ProductEntity(product.name, product.price)
+        # return ProductEntity(product.name, product.price)
 
     def get_all(self):
         return Product.objects.all()
 
-    def save(self):
-        pass
-        # user_model = Product.objects.get(username=user.username)
-        # user_model.email = user.email
-        # user_model.save()
+    def save(self, vendor_id, product: ProductEntity):
+        try:
+            product_model = Product(name=product.name, price=product.price,
+                                    description=product.description, is_active=product.is_active, stock=product.stock, vendor_id=vendor_id)
+            product_model.save()
+        except Exception as e:
+            # Handle the exception (e.g., log it)
+            print(f"Error saving product: {e}")
+            raise ValueError("Error saving product")
+
+        return product_model
+
+    def disable(self, product_id: int):
+        product = Product.objects.get(id=product_id)
+        product.is_active = False
+        product.save()
+        return product
