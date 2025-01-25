@@ -1,9 +1,9 @@
 from core.entities.product import Product
-from store.repositories.product_repository import ProductRepository
+from core.interfaces.product_repository import ProductRepositoryInterface
 
 
 class ProductService:
-    def __init__(self, product_repository: ProductRepository):
+    def __init__(self, product_repository: ProductRepositoryInterface):
         self.product_repository = product_repository
 
     def create_product(self, name: str, price: float):
@@ -17,3 +17,6 @@ class ProductService:
         product = self.product_repository.get_by_id(product_id)
         product.apply_discount(discount)
         self.product_repository.save(product)
+
+    def get_by_id(self, product_id: int):
+        return self.product_repository.get_by_id(product_id)
