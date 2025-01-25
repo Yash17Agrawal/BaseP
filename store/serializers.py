@@ -34,7 +34,8 @@ class PartialUpdateProductSerializer(ModelSerializer):
                   "category", "is_active", "stock"]
 
     def validate(self, attrs):
-        if not any(attrs.values()):
+        # if not any(attrs.values()):
+        if not attrs:
             raise ValidationError(
                 "At least one parameter must be provided.")
         return attrs

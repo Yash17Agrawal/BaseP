@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-* Python 3
-* Virtualenv
+* Python 3   -  (Not mandatory to install)
+* Virtualenv -  To enable referencing library code while development (Not mandatory to install)
 * docker 
 * docker-compose
 

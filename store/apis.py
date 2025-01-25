@@ -14,6 +14,9 @@ product_service = ProductService(ProductRepository())
 
 
 class ProductAPIView(APIView):
+    # TODO: Replace this with the actual vendor ID from request.user.vendor__id
+    VENDOR_ID = 1
+
     def get(self, request, product_id=None):
         if product_id:
             try:
@@ -35,6 +38,7 @@ class ProductAPIView(APIView):
                 # print(update_serializer.validated_data)
                 try:
                     product_service.update_product(
+                        self.VENDOR_ID,
                         product_id,
                         **update_serializer.validated_data)
                     return Response({"message": "Product updated"}, status=status.HTTP_200_OK)
@@ -46,6 +50,7 @@ class ProductAPIView(APIView):
         if create_serializer.is_valid():
             try:
                 product_service.create_product(
+                    self.VENDOR_ID,
                     **create_serializer.validated_data)
                 return Response({"message": "Product created"}, status=status.HTTP_201_CREATED)
             except ValueError as e:
