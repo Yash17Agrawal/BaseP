@@ -1,7 +1,7 @@
 from django.db import models
 
-from core.models.base_model import BaseModel
-from core.models.models import Order, Vendor
+from core.models import BaseModel
+from store.models import Order, Vendor
 
 # Create your models here.
 

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'core',
-    'payment'
+    'payment',
+    'store'
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # AUTH_USER_MODEL = 'core.UserProfile'
+APPEND_SLASH=False

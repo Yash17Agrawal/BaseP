@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models.models import Category, Customer, Order, OrderItem, Product, Shipment, Vendor
+from store.models import Category, Customer, Order, OrderItem, Product, Shipment, Vendor
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
