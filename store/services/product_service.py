@@ -19,8 +19,10 @@ class ProductService:
     def get_all(self):
         return self.product_repository.get_all()
 
-    def disable(self, product_id: int):
-        return self.product_repository.disable(product_id)
+    def update_product(self, product_id: int, **kwargs):
+        product = Product.from_dict(
+            kwargs, self.product_repository.get_by_id(product_id))
+        return self.product_repository.update(product_id, product)
 
     # def apply_discount(self, product_id: int, discount: float):
     #     product = self.product_repository.get_by_id(product_id)

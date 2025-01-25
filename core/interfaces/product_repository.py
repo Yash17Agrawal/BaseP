@@ -19,6 +19,6 @@ class ProductRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def disable(self, product_id: int):
-        """De-Lists a product by its ID"""
+    def update(self, product_id: int):
+        """Updates a product by its ID"""
         pass

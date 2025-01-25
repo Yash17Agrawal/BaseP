@@ -29,8 +29,12 @@ class ProductRepository(ProductRepositoryInterface):
 
         return product_model
 
-    def disable(self, product_id: int):
-        product = Product.objects.get(id=product_id)
-        product.is_active = False
-        product.save()
-        return product
+    def update(self, product_id: int, product: ProductEntity):
+        product_model = Product.objects.get(id=product_id)
+        product_model.is_active = product.is_active
+        product_model.name = product.name
+        product_model.price = product.price
+        product_model.description = product.description
+        product_model.stock = product.stock
+        product_model.save()
+        return product_model

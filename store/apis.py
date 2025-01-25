@@ -4,7 +4,7 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
-from store.serializers import ProductSerializer, UpdateProductSerializer
+from store.serializers import ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -29,9 +29,20 @@ class ProductAPIView(APIView):
     def post(self, request, product_id=None):
         if product_id:
             # Handle POST /products/{pk}/
-            return Response({"message": f"Product {product_id} updated"})
+            update_serializer = PartialUpdateProductSerializer(
+                data=request.data, partial=True)
+            if update_serializer.is_valid():
+                # print(update_serializer.validated_data)
+                try:
+                    product_service.update_product(
+                        product_id,
+                        **update_serializer.validated_data)
+                    return Response({"message": "Product updated"}, status=status.HTTP_200_OK)
+                except ValueError as e:
+                    return Response(data={"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=update_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         # Handle POST /products/
-        create_serializer = UpdateProductSerializer(data=request.data)
+        create_serializer = CreateProductSerializer(data=request.data)
         if create_serializer.is_valid():
             try:
                 product_service.create_product(
