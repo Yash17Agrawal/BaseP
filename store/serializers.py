@@ -1,6 +1,7 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Category, Product
+from store.models import Category, Order, Product
 
 
 class CategorySerializer(ModelSerializer):
@@ -39,3 +40,14 @@ class PartialUpdateProductSerializer(ModelSerializer):
             raise ValidationError(
                 "At least one parameter must be provided.")
         return attrs
+
+
+class GetOrdersRequestSerializer(serializers.Serializer):
+    page_size = serializers.IntegerField(min_value=1, max_value=100)
+    page_no = serializers.IntegerField(min_value=1, max_value=100)
+
+
+class GetOrdersSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"

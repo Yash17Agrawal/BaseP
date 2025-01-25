@@ -2,9 +2,11 @@ from rest_framework.decorators import (api_view, authentication_classes,
                                        permission_classes)
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
+from core.utilities import common_pagination
+from store.models import Order
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
-from store.serializers import ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
+from store.serializers import GetOrdersRequestSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -56,3 +58,18 @@ class ProductAPIView(APIView):
             except ValueError as e:
                 return Response(data={"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response(data=create_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def get_all_user_order(request):
+    payload = request.data
+    get_orders_serializer = GetOrdersRequestSerializer(data=payload)
+    if get_orders_serializer.is_valid():
+        page_size = payload['page_size']
+        page_no = payload['page_no']
+        response = common_pagination(
+            Order, page_size, page_no, GetOrdersSerializer)
+        return Response(response)
+    # logger.warning(payload)
+    return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
