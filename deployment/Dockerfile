@@ -25,6 +25,16 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . /usr/src/app
 
-EXPOSE 8000
+COPY ./deployment/django/start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
+
+COPY ./deployment/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker
+RUN chmod +x /start-celeryworker
+
+COPY ./deployment/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower
+RUN chmod +x /start-flower
 
 ENTRYPOINT ["sh", "deployment/entrypoint.sh"]

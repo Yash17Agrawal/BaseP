@@ -1,5 +1,5 @@
 version: "3.9"
-   
+
 services:
   db:
     image: postgres:17
@@ -20,22 +20,12 @@ services:
       dockerfile: deployment/Dockerfile
     volumes:
       - ../:/usr/src/app
+    # '/start' is the shell script used to run the service
+    command: /start
     ports:
       - "8000:8000"
     depends_on:
       - db
-  # frontend:
-  #   container_name: frontend
-  #   build: ./webapp/frontend/
-  #   command: yarn start
-  #   depends_on:
-  #     - db
-  #     - backend
-  #   volumes:
-  #     - ./webapp/frontend/:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   ports:
-  #     - "3000:3000"
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -47,3 +37,35 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+
+  redis:
+    image: redis:7-alpine
+
+  celery_worker:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - ../:/usr/src/app
+    env_file:
+      - .env.dev
+    depends_on:
+      - redis
+      - db
+
+  flower:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile
+    command: /start-flower
+    # command: tail -F anything
+    volumes:
+      - ../:/usr/src/app
+    env_file:
+      - .env.dev
+    ports:
+      - 5557:5555
+    depends_on:
+      - redis
+      - db
