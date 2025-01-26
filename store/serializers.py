@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Category, Order, Product
+from store.models import Category, Order, OrderItem, Product
 
 
 class CategorySerializer(ModelSerializer):
@@ -18,7 +18,8 @@ class ProductSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ["name", "price", "description", "category", "is_active"]
+        fields = ["name", "price", "description",
+                  "category", "is_active", "id"]
 
 
 class CreateProductSerializer(ModelSerializer):
@@ -58,4 +59,24 @@ class CategorySerializer(ModelSerializer):
         model = Category
         fields = [
             'name'
+        ]
+
+
+class GetCartSerializer(ModelSerializer):
+    id = serializers.IntegerField(read_only=True, source='product.id')
+
+    class Meta:
+        model = OrderItem
+        fields = ['id', 'quantity']
+
+
+class CreateCartSerializer(ModelSerializer):
+
+    class Meta:
+        model = OrderItem
+        fields = [
+            "order",
+            "product",
+            "quantity",
+            "price"
         ]

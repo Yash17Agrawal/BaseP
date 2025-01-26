@@ -12,4 +12,6 @@ urlpatterns = [
 
     path('categorys/', apis.get_category_items),  # GET
 
+    path('cart/', apis.CartAPIs.as_view()),  # GET, POST
+
 ]

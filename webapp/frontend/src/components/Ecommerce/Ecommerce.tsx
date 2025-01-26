@@ -27,7 +27,6 @@ import {
 } from "@mui/material";
 import { HIDE_MODAL, SHOW_MODAL } from "actions/ModalActions";
 import { ModalType } from "constants/modalTypes";
-import { setCartItems } from "actions/cartActions";
 import { IItem } from "interfaces/ecommerceInterfaces";
 import { ICartItem, IReducers } from "interfaces/commonInterfaces";
 import { APP_URLS } from "constants/common";
