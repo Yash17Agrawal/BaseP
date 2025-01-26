@@ -1,0 +1,76 @@
+.cardGrid {
+    padding-bottom: 8px;
+    justify-content: center;
+
+    .paginationOptions {
+        display: flex;
+        margin-top: 2em;
+        justify-content: space-evenly;
+    }
+    .rowsPerPage {
+        width: 8em;
+        // marginRight: 4em,;
+    }
+    .pageNo {
+        // marginRight: 15em,;
+    }
+    .card {
+        margin-bottom: 1em;
+        .title {
+            margin: 1em 0;
+        }
+        .boxInner {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 14px 18px;
+            background-color: #f0f2f2 !important;
+        }
+        .boxInnerLeft {
+            display: flex;
+        }
+        .boxInnerRight {
+            display: flex;
+        }
+        .boxInnerColumn {
+            width: 8em;
+        }
+
+        .item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .subItemLeft {
+            // height: 100%,;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1em;
+        }
+        .subItemRight {
+            // height: 100%,;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+        .subItemRightRow {
+            display: flex;
+        }
+        .popover {
+            pointer-events: none;
+        }
+        .cardMedia {
+            height: 5em;
+            width: 6em;
+            display: block;
+            margin-right: 2em;
+            margin-bottom: 0.5em;
+            max-width: 100%;
+        }
+        .cardContent {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}

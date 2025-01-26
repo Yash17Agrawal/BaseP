@@ -1,0 +1,17 @@
+.layout {
+    width: auto;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 3em;
+    .paper {
+        position: relative;
+    }
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
+    button {
+        margin-top: 3em;
+        margin-left: 2em;
+    }
+}

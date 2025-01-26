@@ -1,0 +1,32 @@
+.cardGrid {
+    padding-top: 6em;
+    padding-bottom: 6em;
+    display: flex;
+    flex-direction: column;
+    .icon {
+        margin-right: 6em;
+    }
+    .name {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+    .item {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .yash {
+        text-decoration: line-through;
+    }
+    .cardMedia {
+        padding-top: 56.25%; // 16:9
+    }
+    .cardContent {
+        flex-grow: 1;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}

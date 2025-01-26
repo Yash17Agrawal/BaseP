@@ -1,0 +1,28 @@
+.container {
+    overflow: auto;
+    .listItem {
+        padding: 1em 0;
+    }
+    .total {
+        font-weight: 700;
+    }
+    .title {
+        margin-top: 1px;
+    }
+    .coupon {
+        display: flex;
+        justify-content: end;
+        align-items: baseline;
+    }
+    .placeOrderGrid {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+    .strikeThrough {
+        text-decoration: line-through;
+    }
+    .description {
+        color: rgba(0, 0, 0, 0.54);
+    }
+}

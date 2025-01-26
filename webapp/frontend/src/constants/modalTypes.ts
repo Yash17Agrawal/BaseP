@@ -1,0 +1,6 @@
+export enum ModalType {
+  LOADER = "LOADER",
+  GENERIC_MODAL = "GENERIC_MODAL",
+  APPLY_COUPON = "APPLY_COUPON",
+  NONE = "NONE",
+}

@@ -1,0 +1,54 @@
+.itemDetailContainer {
+    height: 100%;
+    .paper {
+        height: 62%;
+        margin-top: 3em;
+        box-shadow: 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    }
+
+    .gridContainer {
+        height: 100%;
+        padding: 1.5em;
+        .img {
+            height: 100%;
+        }
+        .cardMedia {
+            height: 100%;
+            margin: auto;
+            display: block;
+            max-height: 100%;
+            max-width: 100%; // 25em
+            box-shadow: 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0),
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        }
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .qty {
+                width: fit-content;
+            }
+            .mrp-typo {
+                display: flex;
+                .mrp {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .itemDetailContainer {
+        .gridContainer {
+            height: 100%;
+            padding: 1em;
+            .MuiGrid-item {
+                height: 50%;
+            }
+            .cardMedia {
+                height: 100%;
+                max-height: 100%; // 25em
+            }
+        }
+    }
+}
