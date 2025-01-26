@@ -17,7 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from webapp.StaticSiteMap import StaticViewSitemap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    # 'items': GenericSitemap({'queryset': Item.objects.get_queryset().order_by('id'), 'date_field': 'modified_date'}, priority=1.0, changefreq="monthly"),
+}
+
 urlpatterns = [
+    path('sitemap.xml', sitemap,
+         {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     path('admin/', admin.site.urls),
     path('api/', include('store.urls')),
     # path('api/payment', include('payment.urls')),
