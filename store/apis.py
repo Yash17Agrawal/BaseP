@@ -3,10 +3,10 @@ from rest_framework.decorators import (api_view, authentication_classes,
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from core.utilities import common_pagination
-from store.models import Order
+from store.models import Category, Order
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
-from store.serializers import GetOrdersRequestSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
+from store.serializers import CategorySerializer, GetOrdersRequestSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -81,3 +81,11 @@ def get_all_user_order(request):
 def get_order_details(request, order_id):
     result = my_task.delay(3, 5)
     return Response({"message": "Order details", "task_id": result.id})
+
+
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def get_category_items(request):
+    categories = Category.objects.filter()
+    return Response(CategorySerializer(categories, many=True).data)

@@ -59,6 +59,44 @@ class Customer(BaseModel):
     def __str__(self):
         return self.user.username
 
+
+class Coupon(BaseModel):
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='coupons', null=True)
+    name = models.CharField(max_length=10, blank=False, primary_key=True)
+    percentage = models.DecimalField(decimal_places=2, max_digits=4)
+    max_discount = models.DecimalField(decimal_places=2, max_digits=6)
+    min_amount = models.DecimalField(decimal_places=2, max_digits=8)
+
+    def __str__(self) -> str:
+        return "{}".format(self.name)
+
+
+class Address(BaseModel):
+    HOME = 'Home'
+    OFFICE = 'Office'
+    KIND_CHOICES = [
+        (HOME, HOME),
+        (OFFICE, OFFICE)
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    city = models.CharField(max_length=10)
+    kind = models.CharField(max_length=10, choices=KIND_CHOICES)
+    name = models.CharField(max_length=32, blank=False, null=False)
+    address_first_line = models.CharField(
+        max_length=64, blank=False, null=False)
+    address_second_line = models.CharField(
+        max_length=64, blank=True, null=True)
+    pincode = models.IntegerField(null=False, blank=False)
+    phone = models.CharField(max_length=16, blank=False)
+
+    def __str__(self) -> str:
+        return "{}-{} - {}".format(self.name, self.address_first_line, self.pincode)
+
+    class Meta:
+        unique_together = ('user', 'city', 'kind', 'name', 'pincode')
+
+
 # Order Model
 
 
@@ -66,6 +104,11 @@ class Order(BaseModel):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="orders")
     total_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    invoice_location = models.CharField(max_length=128, null=True, blank=False)
+    delivery_address = models.ForeignKey(
+        Address, on_delete=models.CASCADE, null=True, blank=True)
+    applied_coupon = models.ForeignKey(
+        Coupon, on_delete=models.CASCADE, null=True, blank=True)
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
         ("PAID", "Paid"),
@@ -75,6 +118,7 @@ class Order(BaseModel):
     ]
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default="PENDING")
+    provider_order_id = models.CharField(max_length=128, null=True, blank=True)
 
     def __str__(self):
         return f"Order #{self.id} by {self.customer.user.username}"
@@ -84,7 +128,7 @@ class Order(BaseModel):
 
 class OrderItem(BaseModel):
     order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="items")
+        Order, on_delete=models.CASCADE, related_name="details")
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="order_items")
     quantity = models.PositiveIntegerField()

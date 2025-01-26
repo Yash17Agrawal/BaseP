@@ -10,7 +10,7 @@ class Product:
         self.stock = stock
 
     @classmethod
-    def from_dict(cls, data: dict):
+    def from_dict_w(cls, data: dict):
         # Ensure price is converted to float if it's a Decimal
         if isinstance(data.get('price'), Decimal):
             data['price'] = float(data['price'])

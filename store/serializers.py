@@ -51,3 +51,11 @@ class GetOrdersSerializer(ModelSerializer):
     class Meta:
         model = Order
         fields = "__all__"
+
+
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            'name'
+        ]
