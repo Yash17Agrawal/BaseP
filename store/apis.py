@@ -11,6 +11,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from store.tasks import my_task
+
 #                   App Layer ( Infra Layer )
 product_service = ProductService(ProductRepository())
 
@@ -73,3 +75,9 @@ def get_all_user_order(request):
         return Response(response)
     # logger.warning(payload)
     return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_order_details(request, order_id):
+    result = my_task.delay(3, 5)
+    return Response({"message": "Order details", "task_id": result.id})
