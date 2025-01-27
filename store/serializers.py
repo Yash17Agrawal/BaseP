@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Category, Order, OrderItem, Product
+from store.models import Address, Category, Order, OrderItem, Product
 
 
 class CategorySerializer(ModelSerializer):
@@ -79,4 +79,72 @@ class CreateCartSerializer(ModelSerializer):
             "product",
             "quantity",
             "price"
+        ]
+
+
+class AddressSerializer(ModelSerializer):
+    class Meta:
+        model = Address
+        fields = [
+            "id",
+            "city",
+            "kind",
+            "name",
+            "address_first_line",
+            "address_second_line",
+            "pincode",
+            "phone"
+        ]
+
+
+class GetOrderItemsBaseSerializer(ModelSerializer):
+    id = serializers.IntegerField(read_only=True, source='product.id')
+    name = serializers.CharField(read_only=True, source='product.name')
+    # media = MediaSerializer(read_only=True, source='product.media', many=True)
+    description = serializers.CharField(
+        read_only=True, source='product.description')
+    units_per_order = serializers.IntegerField(
+        read_only=True, source='product.units_per_order')
+
+    class Meta:
+        fields = [
+            'id',
+            'name',
+            # 'media',
+            'description',
+            'units_per_order',
+            'quantity'
+        ]
+        abstract = True
+
+
+class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):
+    price = serializers.CharField(
+        read_only=True, source='product.price')
+    total_offer_price = serializers.SerializerMethodField(
+        'get_total_offer_price')  # price * quantity
+
+    def get_total_offer_price(self, obj):
+        return obj.product.price * obj.quantity
+
+    class Meta:
+        model = OrderItem
+        fields = GetOrderItemsBaseSerializer.Meta.fields + [
+            'price',
+            'total_offer_price'
+        ]
+
+
+class CreateAddressSerializer(ModelSerializer):
+    class Meta:
+        model = Address
+        fields = [
+            "customer",
+            "city",
+            "kind",
+            "name",
+            "phone",
+            "address_first_line",
+            "address_second_line",
+            "pincode",
         ]

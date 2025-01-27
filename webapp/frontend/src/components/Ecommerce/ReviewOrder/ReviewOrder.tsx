@@ -204,8 +204,8 @@ const ReviewOrder = (props: IProps) => {
       callback_url: callbackUrl,
       redirect: true,
       prefill: {
-        name: userReducer.firstName,
-        email: userReducer.email,
+        name: "Yash",
+        email: "yash17agrawal@gmail.com",
         contact: "",
       },
       notes: {

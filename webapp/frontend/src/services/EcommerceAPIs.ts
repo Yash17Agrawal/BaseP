@@ -75,13 +75,13 @@ export const getAppDetails = () => {
   return get(getFullUrl(`/app-details/`));
 };
 
-// export const getCheckoutData=(couponName?: string) =>{
-//   const if= (couponName) =>{
-//     return this.getEcommerceCouponItems(couponName);
-//   } else {
-//     return get(getFullUrl(`/checkout/`));
-//   }
-// }
+export const getCheckoutData = (couponName?: string) => {
+  if (couponName) {
+    return getEcommerceCouponItems(couponName);
+  } else {
+    return get(getFullUrl(`/checkout/`));
+  }
+};
 
 export const updateCheckoutAddress = (deliveryAddress: number) => {
   return post(getFullUrl(`/checkout/address/`), {

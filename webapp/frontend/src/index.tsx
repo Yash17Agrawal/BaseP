@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { Route, Routes, BrowserRouter as Router } from "react-router";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Items from "components/Items/Items";
 // import VendorsListing from 'components/Vendors/VendorsListing';
 import configureStore from "configureStore";
@@ -32,8 +32,8 @@ const store = configureStore({});
 
 const routes = (
   <Provider store={store}>
-    {/* <ModalManager />
-    <Notification /> */}
+    <ModalManager />
+    <Notification />
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <Router>
         <Routes>

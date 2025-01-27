@@ -31,5 +31,5 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
     path('admin/', admin.site.urls),
     path('api/', include('store.urls')),
-    # path('api/payment', include('payment.urls')),
+    path('api/', include('payment.urls')),
 ]

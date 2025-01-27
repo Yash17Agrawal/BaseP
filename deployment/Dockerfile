@@ -17,6 +17,7 @@ RUN apk update \
     apk add --no-cache postgresql-libs && \
     apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
     apk add python3-dev gcc libc-dev
+RUN pip install setuptools
 
 
 COPY ./deployment/requirements.txt /usr/src/app

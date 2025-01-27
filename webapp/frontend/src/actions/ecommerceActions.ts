@@ -280,21 +280,21 @@ export function getCheckoutData(
 ) {
   return async (dispatch: Dispatch<any>) => {
     dispatch(SHOW_MODAL(ModalType.LOADER, { hideModal: HIDE_MODAL }));
-    // APIService.getCheckoutData(couponName)
-    //   .then((response: AxiosResponse<IGetCheckoutDataAPIResponse>) => {
-    //     if (response.status === 204) {
-    //       dispatch(showNotification("No Cart Items found for user", "error"));
-    //       failCallback();
-    //     } else {
-    //       callback(response.data);
-    //     }
-    //     dispatch(HIDE_MODAL());
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     dispatch(HIDE_MODAL());
-    //     dispatch(showNotification(error.response.statusText, "error"));
-    //   });
+    APIService.getCheckoutData(couponName)
+      .then((response: AxiosResponse<IGetCheckoutDataAPIResponse>) => {
+        if (response.status === 204) {
+          dispatch(showNotification("No Cart Items found for user", "error"));
+          failCallback();
+        } else {
+          callback(response.data);
+        }
+        dispatch(HIDE_MODAL());
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(HIDE_MODAL());
+        dispatch(showNotification(error.response.statusText, "error"));
+      });
   };
 }
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Category, Customer, Order, OrderItem, Product, Shipment, Vendor
+from store.models import Address, Category, Customer, Order, OrderItem, Product, Shipment, Vendor
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -17,6 +17,7 @@ class CategoryAdmin(ImportExportModelAdmin):
 
 # Register your models here.
 admin.site.register(Vendor)
+admin.site.register(Address)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product)
 admin.site.register(Customer)

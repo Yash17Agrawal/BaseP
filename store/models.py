@@ -54,7 +54,6 @@ class Product(BaseModel):
 class Customer(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20)
-    address = models.TextField()
 
     def __str__(self):
         return self.user.username
@@ -79,7 +78,7 @@ class Address(BaseModel):
         (HOME, HOME),
         (OFFICE, OFFICE)
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     city = models.CharField(max_length=10)
     kind = models.CharField(max_length=10, choices=KIND_CHOICES)
     name = models.CharField(max_length=32, blank=False, null=False)
@@ -94,7 +93,7 @@ class Address(BaseModel):
         return "{}-{} - {}".format(self.name, self.address_first_line, self.pincode)
 
     class Meta:
-        unique_together = ('user', 'city', 'kind', 'name', 'pincode')
+        unique_together = ('customer', 'city', 'kind', 'name', 'pincode')
 
 
 # Order Model
@@ -108,6 +107,7 @@ class Order(BaseModel):
     invoice_location = models.CharField(max_length=128, null=True, blank=False)
     delivery_address = models.ForeignKey(
         Address, on_delete=models.CASCADE, null=True, blank=True)
+    delivery_charge = models.IntegerField(default=0)
     applied_coupon = models.ForeignKey(
         Coupon, on_delete=models.CASCADE, null=True, blank=True)
     STATUS_CHOICES = [
@@ -160,3 +160,21 @@ class Shipment(BaseModel):
 
     def __str__(self):
         return f"Shipment #{self.id} for Order #{self.order.id}"
+
+
+class GenericGroup(BaseModel):
+    PINCODES = "PINCODES"
+    LATEST = "LATEST"
+    TOP_PICK = "TOP_PICK"
+    DELIVERY_CHARGE = "Delivery_Charge"
+    TYPE_CHOICES = [
+        (LATEST, LATEST),
+        (TOP_PICK, TOP_PICK),
+        (PINCODES, PINCODES),
+        (DELIVERY_CHARGE, DELIVERY_CHARGE)
+    ]
+    type = models.CharField(max_length=16, choices=TYPE_CHOICES, unique=True)
+    data = models.JSONField()
+
+    def __str__(self) -> str:
+        return "{}".format(self.type)

@@ -1,5 +1,5 @@
 export enum CITIES {
-  MATHURA = "MATHURA",
+  DELHI = "DELHI",
   BANAGALORE = "BANAGALORE",
 
   Texas = "Texas",
@@ -19,7 +19,7 @@ export enum States {
 
 export const COUNTRIES_WITH_STATES_WITH_CITIES = {
   [COUNTRIES.INDIA]: {
-    [States.UP]: [CITIES.MATHURA],
+    [States.UP]: [CITIES.DELHI],
     [States.KARNATAKA]: [CITIES.BANAGALORE],
   },
   [COUNTRIES.AMERICA]: {
@@ -72,11 +72,11 @@ export const APP_URLS = {
   ecommDashboard: "/",
   ecommAddress: "/ecomm/address",
   ecommReview: "/ecomm/review",
-  ecommComplete: "/ecomm/complete/:id(\\d+)/",
+  ecommComplete: "/ecomm/complete/:id/",
   ecommOrders: "/ecomm/orders",
   specialOffers: "/ecomm/special-offers/",
-  ecommItemDetails: "/ecomm/item/:id(\\d+)/", // :path(\\w+)
-  ecommOrderDetails: "/ecomm/order/:id(\\d+)/", // :path(\\w+)
+  ecommItemDetails: "/ecomm/item/:id/", // :path(\\w+)
+  ecommOrderDetails: "/ecomm/order/:id/", // :path(\\w+)
 
   userAccount: "/user-account/",
   loginSecurity: "/login-security/",
