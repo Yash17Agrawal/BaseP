@@ -10,7 +10,7 @@ from core.utilities import common_pagination
 from store.models import Address, Category, Coupon, Customer, GenericGroup, Order, OrderItem
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
-from store.serializers import AddressSerializer, CategorySerializer, CreateAddressSerializer, CreateCartSerializer, GetCartSerializer, GetCheckoutReviewItemsSerializer, GetOrdersRequestSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
+from store.serializers import AddressSerializer, CategorySerializer, CreateAddressSerializer, CreateCartSerializer, GetCartSerializer, GetCheckoutReviewItemsSerializer, GetOrdersDataSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -72,21 +72,46 @@ class ProductAPIView(APIView):
 # @permission_classes([IsAuthenticated])
 def get_all_user_order(request):
     payload = request.data
-    get_orders_serializer = GetOrdersRequestSerializer(data=payload)
+    get_orders_serializer = GetOrdersSerializer(data=payload)
     if get_orders_serializer.is_valid():
         page_size = payload['page_size']
         page_no = payload['page_no']
         response = common_pagination(
-            Order, page_size, page_no, GetOrdersSerializer)
+            Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": "PENDING"})
         return Response(response)
     # logger.warning(payload)
     return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# @api_view(['GET'])
+# def get_order_details(request, order_id):
+#     result = my_task.delay(3, 5)
+    # return Response({"message": "Order details", "task_id": result.id})
+
 @api_view(['GET'])
 def get_order_details(request, order_id):
-    result = my_task.delay(3, 5)
-    return Response({"message": "Order details", "task_id": result.id})
+    order = Order.objects.filter(
+        customer=Customer.objects.get(user=1), id=order_id).first()
+    if order:
+        order_details = OrderItem.objects.filter(order=order)
+        data = _format_order_details(order, order_details,
+                                     order.total_amount, order.total_amount, order.delivery_charge, False)
+        return Response(data)
+    else:
+        return Response(data="Order Not Found For The User", status=status.HTTP_204_NO_CONTENT)
+
+
+def _format_order_details(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
+    return {
+        "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address.id)).data if order.delivery_address else None,
+        "items": GetCheckoutReviewItemsSerializer(order_details, many=True).data,
+        "payment": payable_amount,
+        "total": items_total,
+        "discount": items_total-payable_amount,
+        "delivery_charge": delivery_charge,
+        "availability_errors": check_items_with_pincodes(order_details) if order.delivery_address and is_cart else {},
+        "applied_coupon": order.applied_coupon.name if order.applied_coupon else ""
+    }
 
 
 @api_view(['GET'])

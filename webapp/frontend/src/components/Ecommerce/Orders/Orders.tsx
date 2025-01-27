@@ -128,6 +128,7 @@ const Orders = () => {
                         >
                           <LazyLoadImage
                             src={"https://picsum.photos/id/235/500/500"}
+                            style={{ height: "100px", width: "100px" }}
                           />
                           <CardContent className={"cardContent"}>
                             <Typography>

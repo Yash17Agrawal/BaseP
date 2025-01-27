@@ -43,15 +43,84 @@ class PartialUpdateProductSerializer(ModelSerializer):
         return attrs
 
 
-class GetOrdersRequestSerializer(serializers.Serializer):
+class GetOrdersSerializer(serializers.Serializer):
     page_size = serializers.IntegerField(min_value=1, max_value=100)
     page_no = serializers.IntegerField(min_value=1, max_value=100)
 
 
-class GetOrdersSerializer(ModelSerializer):
+class GetOrderItemsBaseSerializer(ModelSerializer):
+    id = serializers.IntegerField(read_only=True, source='product.id')
+    name = serializers.CharField(read_only=True, source='product.name')
+    # media = MediaSerializer(read_only=True, source='product.media', many=True)
+    description = serializers.CharField(
+        read_only=True, source='product.description')
+    units_per_order = serializers.IntegerField(
+        read_only=True, source='product.units_per_order')
+
+    class Meta:
+        fields = [
+            'id',
+            'name',
+            # 'media',
+            'description',
+            'units_per_order',
+            'quantity'
+        ]
+        abstract = True
+
+
+class OrderAddressSerializer(ModelSerializer):
+
+    class Meta:
+        model = Address
+        fields = [
+            "city",
+            "name",
+            "address_first_line",
+            "address_second_line",
+            "pincode",
+        ]
+
+
+class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):
+    offer_price = serializers.CharField(
+        read_only=True, source='product.price')
+    total_offer_price = serializers.SerializerMethodField(
+        'get_total_offer_price')  # offer_price * quantity
+
+    def get_total_offer_price(self, obj):
+        return obj.product.price * obj.quantity
+
+    class Meta:
+        model = OrderItem
+        fields = GetOrderItemsBaseSerializer.Meta.fields + [
+            'offer_price',
+            'total_offer_price'
+        ]
+
+
+class GetOrdersDataSerializer(ModelSerializer):
+    delivery_address = OrderAddressSerializer()
+    items = GetCheckoutReviewItemsSerializer(source='details', many=True)
+    created_date = serializers.DateTimeField(source="created_at")
+    modified_date = serializers.DateTimeField(source="modified_at")
+    total_bill = serializers.DecimalField(
+        source="total_amount", max_digits=12, decimal_places=2)
+
     class Meta:
         model = Order
-        fields = "__all__"
+        fields = [
+            "id",
+            "status",
+            # "payment",
+            "invoice_location",
+            "created_date",
+            "modified_date",
+            "delivery_address",
+            "delivery_charge",
+            "total_bill",
+            "items"
+        ]
 
 
 class CategorySerializer(ModelSerializer):
@@ -95,27 +164,6 @@ class AddressSerializer(ModelSerializer):
             "pincode",
             "phone"
         ]
-
-
-class GetOrderItemsBaseSerializer(ModelSerializer):
-    id = serializers.IntegerField(read_only=True, source='product.id')
-    name = serializers.CharField(read_only=True, source='product.name')
-    # media = MediaSerializer(read_only=True, source='product.media', many=True)
-    description = serializers.CharField(
-        read_only=True, source='product.description')
-    units_per_order = serializers.IntegerField(
-        read_only=True, source='product.units_per_order')
-
-    class Meta:
-        fields = [
-            'id',
-            'name',
-            # 'media',
-            'description',
-            'units_per_order',
-            'quantity'
-        ]
-        abstract = True
 
 
 class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):

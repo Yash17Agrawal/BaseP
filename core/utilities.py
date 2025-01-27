@@ -7,10 +7,10 @@ from django.db.models import Q
 '''
 
 
-def common_pagination(model, page_size, page_no, serializer, filter_kwargs={}, filter_kwargs_and={}):
+def common_pagination(model, page_size, page_no, serializer, filter_kwargs={}, filter_kwargs_and={}, exlude_kwargs={}):
     # https://stackoverflow.com/a/58213764
     data = model.objects.filter(
-        Q(**filter_kwargs, _connector=Q.OR), **filter_kwargs_and).order_by("created_at")
+        Q(**filter_kwargs, _connector=Q.OR), **filter_kwargs_and).order_by("created_at").exclude(**exlude_kwargs)
     # https://www.geeksforgeeks.org/how-to-add-pagination-in-django-project/
     # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
     paginator = Paginator(data, page_size)

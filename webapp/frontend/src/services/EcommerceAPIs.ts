@@ -111,7 +111,7 @@ export const getAllOrders = (pageSize: number, pageNo: number) => {
 };
 
 export const getOrderDetails = (orderId: number) => {
-  return get(getFullUrl(`/order/${orderId}/`));
+  return get(getFullUrl(`/orders/${orderId}/`));
 };
 
 export const login = (credentials: ILoginCredentials) => {
