@@ -104,6 +104,7 @@ class Order(BaseModel):
         Customer, on_delete=models.CASCADE, related_name="orders")
     total_amount = models.DecimalField(
         max_digits=12, decimal_places=2, default=0)
+    payment = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     invoice_location = models.CharField(max_length=128, null=True, blank=False)
     delivery_address = models.ForeignKey(
         Address, on_delete=models.CASCADE, null=True, blank=True)

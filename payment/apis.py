@@ -148,7 +148,7 @@ def place_order(razorpay_order_id):
         payable_amount = get_payable_amount(
             items_in_cart, items_total, placed_order.applied_coupon) + delivery_charge
         placed_order.status = "PAID"
-        placed_order.total_bill = items_total
+        placed_order.total_amount = items_total
         placed_order.payment = payable_amount
         placed_order.delivery_charge = delivery_charge
         with atomic():

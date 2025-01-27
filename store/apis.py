@@ -95,7 +95,7 @@ def get_order_details(request, order_id):
     if order:
         order_details = OrderItem.objects.filter(order=order)
         data = _format_order_details(order, order_details,
-                                     order.total_amount, order.total_amount, order.delivery_charge, False)
+                                     order.total_amount, order.payment, order.delivery_charge, False)
         return Response(data)
     else:
         return Response(data="Order Not Found For The User", status=status.HTTP_204_NO_CONTENT)
@@ -157,9 +157,9 @@ class CartAPIs(APIView):
         cart_order = Order.objects.filter(
             customer=customer, status="PENDING")
         if len(cart_order) > 1:
-            pass
             logger.error(
                 "Multiple cart order exist for a user, System Discrepancy Found")
+            pass
         elif len(cart_order) == 1:
             return cart_order[0]
         else:
@@ -299,8 +299,8 @@ def get_total_bill_for_category(order_details, coupon):
     amount = 0
     if coupon:
         for order_detail in order_details:
-            if order_detail.item.category == coupon.category:
-                amount += (order_detail.item.price *
+            if order_detail.product.category == coupon.category:
+                amount += (order_detail.product.price *
                            order_detail.quantity)
     return amount
 
@@ -329,9 +329,9 @@ def check_items_with_pincodes(order_details_in_cart):
         order_detail_pincode = order_details_in_cart[0].order.delivery_address.pincode
         impossible_delivery_items = {}
         for order_detail in order_details_in_cart:
-            if restricted_area_items and order_detail.item in restricted_area_items and order_detail_pincode not in pincodes:
+            if restricted_area_items and order_detail.product in restricted_area_items and order_detail_pincode not in pincodes:
                 # Item can't be delivered to the expected pincode
-                impossible_delivery_items[order_detail.item.id] = "Unavailable in your shipping area"
+                impossible_delivery_items[order_detail.product.id] = "Unavailable in your shipping area"
         return impossible_delivery_items
     else:
         return {}
