@@ -16,11 +16,15 @@ from store.apis import CartAPIs, get_delivery_charge, get_items_total, get_payab
 from store.models import Customer, Order, OrderItem
 # Create your views here.
 import razorpay
+from store.repositories.order_repository import OrderRepository
+from store.services.order_service import OrderService
 
 logger = logging.getLogger(__package__)
 
 client = razorpay.Client(
     auth=(settings.RAZORPAY_ID, settings.RAZORPAY_SECRET))
+
+order_service = OrderService(OrderRepository())
 
 
 '''
@@ -58,14 +62,15 @@ def razorpay(request):
     customer = Customer.objects.get(user=1)
     order = CartAPIs._get_cart_order(None, customer)
     order_details_in_cart = OrderItem.objects.filter(
-        order=order).select_related('product')
+        order=order.id).select_related('product')
     items_total = get_items_total(order_details_in_cart)
     payable_amount = get_payable_amount(
         order_details_in_cart, items_total, None) + get_delivery_charge(items_total, order)
     razorpay_order = create_order(payable_amount, order.id, {})
     # Save the order in DB
-    order.provider_order_id = razorpay_order["id"]
-    order.save()
+    order_service.update_order(order, **{
+        "provider_order_id": razorpay_order["id"]
+    })
     logger.info(
         "{}/api/razorpay_callback".format(request.build_absolute_uri('/')[:-1]))
     return Response({"merchantId": "rzp_test_leBRK3Vt3XMVkp",

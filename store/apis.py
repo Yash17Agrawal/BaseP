@@ -9,7 +9,9 @@ from rest_framework.response import Response
 from core.utilities import common_pagination
 from store.models import Address, Category, Coupon, Customer, GenericGroup, Order, OrderItem
 from store.repositories.customer_repository import CustomerRepository
+from store.repositories.order_repository import OrderRepository
 from store.services.customer_service import CustomerService
+from store.services.order_service import OrderService
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
 from store.serializers import AddressSerializer, CategorySerializer, CreateAddressSerializer, CreateCartSerializer, GetCartSerializer, GetCheckoutReviewItemsSerializer, GetOrdersDataSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
@@ -22,6 +24,7 @@ from store.tasks import my_task
 #                   App Layer ( Infra Layer )
 product_service = ProductService(ProductRepository())
 customer_service = CustomerService(CustomerRepository())
+order_service = OrderService(OrderRepository())
 
 logger = logging.getLogger(__package__)
 
@@ -74,10 +77,9 @@ class ProductAPIView(APIView):
 
 class OrdersAPIView(APIView):
     def get(self, request, order_id):
-        order = Order.objects.filter(
-            customer=1, id=order_id).first()
+        order = order_service.get_by_id(1, order_id)
         if order:
-            order_details = OrderItem.objects.filter(order=order)
+            order_details = OrderItem.objects.filter(order=order.id)
             data = _format_order_items(order, order_details,
                                        order.total_amount, order.payment, order.delivery_charge, False)
             return Response(data)
@@ -123,30 +125,24 @@ class CartAPIs(APIView):
                 if cart_order:
                     return self._update(data, cart_order, user)
                 else:
-                    cart_order = Order.objects.create(
-                        customer=user)
+                    cart_order = order_service.create_pending_order(1)
                     return self._bulk_create(data, cart_order)
         except Exception as e:
             logger.exception(e)
             return Response(data=e.args, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        items_in_cart = OrderItem.objects.filter(
-            order=self._get_cart_order(self.get_user()))
+        order = self._get_cart_order(self.get_user())
+        if order:
+            items_in_cart = OrderItem.objects.filter(
+                order=order.id)
+        else:
+            items_in_cart = None
         return Response(GetCartSerializer(items_in_cart, many=True).data)
 
     def _get_cart_order(self, customer):
         # .get() throws unwanted error
-        cart_order = Order.objects.filter(
-            customer=customer, status=Order.PENDING)
-        if len(cart_order) > 1:
-            logger.error(
-                "Multiple cart order exist for a user, System Discrepancy Found")
-            pass
-        elif len(cart_order) == 1:
-            return cart_order[0]
-        else:
-            return None
+        return order_service.get_pending_order(customer.id)
 
     def _create_cart_order_detail(self, all_data, many):
         create_cart_serializer = CreateCartSerializer(data=all_data, many=many)
@@ -216,17 +212,17 @@ def get_checkout_details(request, name=None):
     coupon = None
     if name:
         coupon = get_object_or_404(Coupon, pk=name)
-    cart_order = Order.objects.filter(
-        customer__id=1, status=Order.PENDING).first()
+    cart_order = order_service.get_pending_order(1)
     if cart_order:
-        if name:
-            cart_order.applied_coupon = coupon
-            logger.info("Updating User Cart order with coupon")
-            logger.debug(
-                "Updating User Cart order with coupon {}".format(coupon))
-            cart_order.save()
+        # TODO: Beingback coupon discount with order service
+        # if name:
+        #     cart_order.applied_coupon = coupon
+        #     logger.info("Updating User Cart order with coupon")
+        #     logger.debug(
+        #         "Updating User Cart order with coupon {}".format(coupon))
+        #     cart_order.save()
         order_items_in_cart = OrderItem.objects.filter(
-            order=cart_order).select_related('product')
+            order=cart_order.id).select_related('product')
         items_total = get_items_total(order_items_in_cart)
         delivery_charge = get_delivery_charge(items_total, cart_order)
         payable_amount = get_payable_amount(

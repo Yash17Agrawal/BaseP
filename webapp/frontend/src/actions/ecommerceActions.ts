@@ -325,16 +325,16 @@ export function getMedia(
 ) {
   return async (dispatch: Dispatch<any>) => {
     dispatch(SHOW_MODAL(ModalType.LOADER, { hideModal: HIDE_MODAL }));
-    APIService.getMedia(type, group)
-      .then((response: AxiosResponse<IGetMediaAPIResponse[]>) => {
-        callback(response.data);
-        dispatch(HIDE_MODAL());
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch(HIDE_MODAL());
-        dispatch(showNotification(error.response.statusText, "error"));
-      });
+    // APIService.getMedia(type, group)
+    //   .then((response: AxiosResponse<IGetMediaAPIResponse[]>) => {
+    //     callback(response.data);
+    //     dispatch(HIDE_MODAL());
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     dispatch(HIDE_MODAL());
+    //     dispatch(showNotification(error.response.statusText, "error"));
+    //   });
   };
 }
 
