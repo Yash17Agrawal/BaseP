@@ -9,7 +9,7 @@ class Order:
         self.total_amount = total_amount
         self.payment = payment
         self.invoice_location = invoice_location
-        self.delivery_address = delivery_address
+        self.delivery_address_id = delivery_address
         self.delivery_charge = delivery_charge
         self.applied_coupon = applied_coupon
         self.provider_order_id = provider_order_id

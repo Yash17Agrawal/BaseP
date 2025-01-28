@@ -16,10 +16,15 @@ class OrderRepositoryInterface(ABC):
 
     @abstractmethod
     def create_order(self, customer_id: int, order_data: Order):
-        """Creates order for customer from order entitt"""
+        """Creates order for customer from order entity"""
         pass
 
     @abstractmethod
     def update_order(self, customer_id: int, order_data: Order):
-        """Updates order for customer from order entitt"""
+        """Updates order for customer from order entity"""
+        pass
+
+    @abstractmethod
+    def delete_pending_order(self, customer_id: int) -> None:
+        """Deletes pending order for customer from order entity"""
         pass

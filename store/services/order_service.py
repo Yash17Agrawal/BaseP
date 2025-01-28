@@ -23,5 +23,5 @@ class OrderService:
             order_entity.customer_id,
             Order.update_order_entity(data, order_entity))
 
-    def get_cart_order_id(self, customer_id: int):
-        pass
+    def delete_order(self, customer_id: int):
+        self.order_repository.delete_pending_order(customer_id)

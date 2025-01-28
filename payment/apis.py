@@ -80,7 +80,7 @@ def razorpay(request):
                      "name": "BP Ecomm",
                      "description": "Place Order",
                      "callback_url":  "{}/api/razorpay_callback".format(request.build_absolute_uri('/')[:-1]),
-                     "address": order.delivery_address.__str__()})
+                     "address": order.delivery_address_id})
 
 
 class CallbackView(APIView):

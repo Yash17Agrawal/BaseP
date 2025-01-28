@@ -88,6 +88,7 @@ class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):
         read_only=True, source='product.price')
     total_offer_price = serializers.SerializerMethodField(
         'get_total_offer_price')  # offer_price * quantity
+    units_per_order = serializers.IntegerField(source='quantity')
 
     def get_total_offer_price(self, obj):
         return obj.product.price * obj.quantity
@@ -96,7 +97,8 @@ class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):
         model = OrderItem
         fields = GetOrderItemsBaseSerializer.Meta.fields + [
             'offer_price',
-            'total_offer_price'
+            'total_offer_price',
+            'units_per_order'
         ]
 
 
@@ -164,23 +166,6 @@ class AddressSerializer(ModelSerializer):
             "address_second_line",
             "pincode",
             "phone"
-        ]
-
-
-class GetCheckoutReviewItemsSerializer(GetOrderItemsBaseSerializer):
-    price = serializers.CharField(
-        read_only=True, source='product.price')
-    total_offer_price = serializers.SerializerMethodField(
-        'get_total_offer_price')  # price * quantity
-
-    def get_total_offer_price(self, obj):
-        return obj.product.price * obj.quantity
-
-    class Meta:
-        model = OrderItem
-        fields = GetOrderItemsBaseSerializer.Meta.fields + [
-            'price',
-            'total_offer_price'
         ]
 
 

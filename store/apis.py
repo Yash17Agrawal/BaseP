@@ -166,8 +166,7 @@ class CartAPIs(APIView):
 
     def _update(self, data, cart_order, user):
         if data['items'] == []:
-            Order.objects.filter(customer=user,
-                                 status=Order.PENDING).delete()
+            order_service.delete_order(user)
             logger.info("Empty items list, deleted Cart order")
             return Response(data=[], status=status.HTTP_200_OK)
         item_id_to_details = {}
@@ -286,13 +285,13 @@ def get_total_bill_for_category(order_details, coupon):
 
 def _format_order_items(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
     return {
-        "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address.id)).data if order.delivery_address else None,
+        "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address_id)).data if order.delivery_address_id else None,
         "items": GetCheckoutReviewItemsSerializer(order_details, many=True).data,
         "payment": payable_amount,
         "total": items_total,
         "discount": items_total-payable_amount,
         "delivery_charge": delivery_charge,
-        "availability_errors": check_items_with_pincodes(order_details) if order.delivery_address and is_cart else {},
+        "availability_errors": check_items_with_pincodes(order_details) if order.delivery_address_id and is_cart else {},
         "applied_coupon": order.applied_coupon.name if order.applied_coupon else ""
     }
 
@@ -362,8 +361,11 @@ def update_user_cart_address(request):
     charge = 50
     if delivery_charges:
         charge = delivery_charges.data.get(str(address.pincode))
-    Order.objects.filter(customer=1, status=Order.PENDING).update(
-        delivery_address_id=request.data['delivery_address'], delivery_charge=charge)
+    pending_order = order_service.get_pending_order(1)
+    order_service.update_order(pending_order, **{
+        "delivery_address_id": request.data['delivery_address'],
+        "delivery_charge":   charge
+    })
     return Response(status=status.HTTP_200_OK)
 
 
