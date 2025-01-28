@@ -78,16 +78,11 @@ def get_all_user_order(request):
         page_size = payload['page_size']
         page_no = payload['page_no']
         response = common_pagination(
-            Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": "PENDING"})
+            Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": Order.PENDING})
         return Response(response)
     # logger.warning(payload)
     return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-# @api_view(['GET'])
-# def get_order_details(request, order_id):
-#     result = my_task.delay(3, 5)
-    # return Response({"message": "Order details", "task_id": result.id})
 
 @api_view(['GET'])
 def get_order_details(request, order_id):
@@ -143,7 +138,7 @@ class CartAPIs(APIView):
     def _get_cart_order(self, customer):
         # .get() throws unwanted error
         cart_order = Order.objects.filter(
-            customer=customer, status="PENDING")
+            customer=customer, status=Order.PENDING)
         if len(cart_order) > 1:
             logger.error(
                 "Multiple cart order exist for a user, System Discrepancy Found")
@@ -176,7 +171,7 @@ class CartAPIs(APIView):
     def _update(self, data, cart_order, user):
         if data['items'] == []:
             Order.objects.filter(customer=user,
-                                 status="PENDING").delete()
+                                 status=Order.PENDING).delete()
             logger.info("Empty items list, deleted Cart order")
             return Response(data=[], status=status.HTTP_200_OK)
         item_id_to_details = {}
@@ -222,7 +217,7 @@ def get_checkout_details(request, name=None):
     if name:
         coupon = get_object_or_404(Coupon, pk=name)
     cart_order = Order.objects.filter(
-        customer__id=1, status="PENDING").first()
+        customer__id=1, status=Order.PENDING).first()
     if cart_order:
         if name:
             cart_order.applied_coupon = coupon
@@ -352,11 +347,13 @@ class UserAddress(APIView):
 
 @api_view(['GET'])
 def get_cities(request):
+    # TODO: Replace this with actual city data
     return Response(data=[{"name": "Delhi"}])
 
 
 @api_view(['GET'])
 def get_region_for_city(request):
+    # TODO: Replace this with actual region data
     return Response(data="UP")
 
 
@@ -368,7 +365,7 @@ def update_user_cart_address(request):
     charge = 50
     if delivery_charges:
         charge = delivery_charges.data.get(str(address.pincode))
-    Order.objects.filter(customer=Customer.objects.get(user=1), status="PENDING").update(
+    Order.objects.filter(customer=Customer.objects.get(user=1), status=Order.PENDING).update(
         delivery_address_id=request.data['delivery_address'], delivery_charge=charge)
     return Response(status=status.HTTP_200_OK)
 

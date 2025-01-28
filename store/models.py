@@ -100,6 +100,7 @@ class Address(BaseModel):
 
 
 class Order(BaseModel):
+    PENDING = "PENDING"
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="orders")
     total_amount = models.DecimalField(
@@ -112,7 +113,7 @@ class Order(BaseModel):
     applied_coupon = models.ForeignKey(
         Coupon, on_delete=models.CASCADE, null=True, blank=True)
     STATUS_CHOICES = [
-        ("PENDING", "Pending"),
+        (PENDING, "Pending"),
         ("PAID", "Paid"),
         ("SHIPPED", "Shipped"),
         ("DELIVERED", "Delivered"),
