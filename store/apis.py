@@ -69,32 +69,29 @@ class ProductAPIView(APIView):
         return Response(data=create_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-def get_all_user_order(request):
-    payload = request.data
-    get_orders_serializer = GetOrdersSerializer(data=payload)
-    if get_orders_serializer.is_valid():
-        page_size = payload['page_size']
-        page_no = payload['page_no']
-        response = common_pagination(
-            Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": Order.PENDING})
-        return Response(response)
-    # logger.warning(payload)
-    return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class OrdersAPIView(APIView):
+    def get(self, request, order_id):
+        order = Order.objects.filter(
+            customer=Customer.objects.get(user=1), id=order_id).first()
+        if order:
+            order_details = OrderItem.objects.filter(order=order)
+            data = _format_order_items(order, order_details,
+                                       order.total_amount, order.payment, order.delivery_charge, False)
+            return Response(data)
+        else:
+            return Response(data="Order Not Found For The User", status=status.HTTP_204_NO_CONTENT)
 
-
-@api_view(['GET'])
-def get_order_details(request, order_id):
-    order = Order.objects.filter(
-        customer=Customer.objects.get(user=1), id=order_id).first()
-    if order:
-        order_details = OrderItem.objects.filter(order=order)
-        data = _format_order_items(order, order_details,
-                                   order.total_amount, order.payment, order.delivery_charge, False)
-        return Response(data)
-    else:
-        return Response(data="Order Not Found For The User", status=status.HTTP_204_NO_CONTENT)
+    def post(self, request):
+        payload = request.data
+        get_orders_serializer = GetOrdersSerializer(data=payload)
+        if get_orders_serializer.is_valid():
+            page_size = payload['page_size']
+            page_no = payload['page_no']
+            response = common_pagination(
+                Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": Order.PENDING})
+            return Response(response)
+        # logger.warning(payload)
+        return Response(data=get_orders_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])

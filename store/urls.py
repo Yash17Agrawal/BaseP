@@ -7,8 +7,8 @@ urlpatterns = [
     # GET, #POST
     path('items/<int:product_id>/', apis.ProductAPIView.as_view()),
 
-    path('orders/', apis.get_all_user_order),  # POST
-    path('orders/<int:order_id>/', apis.get_order_details),  # GET
+    path('orders/', apis.OrdersAPIView.as_view()),  # POST
+    path('orders/<int:order_id>/', apis.OrdersAPIView.as_view()),  # GET
 
     path('categorys/', apis.get_category_items),  # GET
 
