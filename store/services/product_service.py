@@ -20,6 +20,9 @@ class ProductService:
     def get_all(self):
         return self.product_repository.get_all()
 
+    def search(self, keyword: str):
+        return self.product_repository.get_all_by_filter(keyword)
+
     def update_product(self, vendor_id: int, product_id: int, **kwargs):
         product = Product.from_dict(
             kwargs, self.product_repository.get_by_id(product_id))

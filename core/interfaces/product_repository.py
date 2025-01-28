@@ -14,8 +14,13 @@ class ProductRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def get_all(self, product_id: int) -> Product:
+    def get_all(self, product_id: int) -> list[Product]:
         """Gets all products"""
+        pass
+
+    @abstractmethod
+    def get_all_by_filter(self, keyword) -> list[Product]:
+        """Gets all products by filter"""
         pass
 
     @abstractmethod

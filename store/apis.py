@@ -383,3 +383,21 @@ def update_user_cart_address(request):
     Order.objects.filter(customer=Customer.objects.get(user=1), status="PENDING").update(
         delivery_address_id=request.data['delivery_address'], delivery_charge=charge)
     return Response(status=status.HTTP_200_OK)
+
+
+class SearchAPI(APIView):
+    permission_classes = []
+    authentication_classes = []
+
+    def get(self, request):
+        get_params = request.GET
+        if 'type' in get_params and hasattr(self, "_get_{}".format(get_params['type'])):
+            return getattr(self, "_get_{}".format(get_params['type']))(get_params["value"])
+        else:
+            return Response(data="type Not found", status=status.HTTP_400_BAD_REQUEST)
+
+    def _get_item(self, keyword):
+        if len(keyword.strip()) == 0:
+            return Response(data="Empty search string", status=status.HTTP_400_BAD_REQUEST)
+        products = product_service.search(keyword)
+        return Response(data=ProductSerializer(products, many=True).data, status=status.HTTP_200_OK)

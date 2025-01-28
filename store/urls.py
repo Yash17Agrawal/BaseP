@@ -19,4 +19,6 @@ urlpatterns = [
     path('cities/', apis.get_cities),  # GET
     path('region/', apis.get_region_for_city),  # GET
 
+    path('search/', apis.SearchAPI.as_view()),  # GET
+
 ]

@@ -1,6 +1,7 @@
 from core.interfaces.product_repository import ProductRepositoryInterface
 from store.models import Product
 from core.entities.product import Product as ProductEntity
+from django.db.models import Q
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -16,6 +17,9 @@ class ProductRepository(ProductRepositoryInterface):
 
     def get_all(self):
         return Product.objects.all()
+
+    def get_all_by_filter(self, keyword):
+        return Product.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword), is_active=True)
 
     def save(self, vendor_id, product: ProductEntity):
         try:
