@@ -17,6 +17,12 @@ class Vendor(BaseModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['email']),
+        ]
+
 # Product Category Model
 
 
@@ -28,6 +34,12 @@ class Category(BaseModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['slug']),
+        ]
 
 # Product Model
 
@@ -48,6 +60,12 @@ class Product(BaseModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['description']),
+        ]
+
 # Customer Model
 
 
@@ -57,6 +75,11 @@ class Customer(BaseModel):
 
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['phone_number']),
+        ]
 
 
 class Coupon(BaseModel):
@@ -94,6 +117,10 @@ class Address(BaseModel):
 
     class Meta:
         unique_together = ('customer', 'city', 'kind', 'name', 'pincode')
+        indexes = [
+            models.Index(fields=['city']),
+            models.Index(fields=['pincode']),
+        ]
 
 
 # Order Model
@@ -127,6 +154,12 @@ class Order(BaseModel):
     def __str__(self):
         return f"Order #{self.id} by {self.customer.user.username}"
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['customer']),
+        ]
+
 # Order Item Model
 
 
@@ -140,6 +173,12 @@ class OrderItem(BaseModel):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['order']),
+            models.Index(fields=['product']),
+        ]
 
 # Shipment Model
 
@@ -163,6 +202,12 @@ class Shipment(BaseModel):
 
     def __str__(self):
         return f"Shipment #{self.id} for Order #{self.order.id}"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['order']),
+            models.Index(fields=['tracking_number']),
+        ]
 
 
 class GenericGroup(BaseModel):
