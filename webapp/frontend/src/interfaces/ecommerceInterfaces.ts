@@ -5,7 +5,7 @@ interface IMedia extends IGetMediaAPIResponse {
 export interface IItem {
   id: number;
   name: string;
-  mrp: string;
+  price: string;
   offerPrice: string;
   media?: IMedia[];
   category: {

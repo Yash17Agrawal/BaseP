@@ -117,11 +117,11 @@ const ItemDetail = () => {
             <Typography variant="h3">{item.name}</Typography>
             <Typography variant="h6">{item.description}</Typography>
             <Typography variant="h5" className="mrp-typo">
-              MRP: {SYMBOLS.Rupee} <p className="mrp">{item.mrp}</p>
+              MRP: {SYMBOLS.Rupee} <p className="mrp">{item.price}</p>
             </Typography>
 
             <Typography variant="h5">
-              Rebate price: {SYMBOLS.Rupee}
+              Offer price: {SYMBOLS.Rupee}
               {item.offerPrice}
             </Typography>
             <div>

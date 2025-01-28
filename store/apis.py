@@ -26,6 +26,7 @@ logger = logging.getLogger(__package__)
 class ProductAPIView(APIView):
     # TODO: Replace this with the actual vendor ID from request.user.vendor__id
     VENDOR_ID = 1
+    DEFAULT_CATEGORY_ID = 1
 
     def get(self, request, product_id=None):
         if product_id:
@@ -59,9 +60,9 @@ class ProductAPIView(APIView):
         create_serializer = CreateProductSerializer(data=request.data)
         if create_serializer.is_valid():
             try:
+                # TODO: Remove hard coding of category and vendor , it should come from api payload from vendor's product onboarding journey
                 product_service.create_product(
-                    self.VENDOR_ID,
-                    **create_serializer.validated_data)
+                    {"vendor_id": self.VENDOR_ID, "category_id": self.DEFAULT_CATEGORY_ID, **create_serializer.validated_data})
                 return Response({"message": "Product created"}, status=status.HTTP_201_CREATED)
             except ValueError as e:
                 return Response(data={"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -94,24 +95,11 @@ def get_order_details(request, order_id):
         customer=Customer.objects.get(user=1), id=order_id).first()
     if order:
         order_details = OrderItem.objects.filter(order=order)
-        data = _format_order_details(order, order_details,
-                                     order.total_amount, order.payment, order.delivery_charge, False)
+        data = _format_order_items(order, order_details,
+                                   order.total_amount, order.payment, order.delivery_charge, False)
         return Response(data)
     else:
         return Response(data="Order Not Found For The User", status=status.HTTP_204_NO_CONTENT)
-
-
-def _format_order_details(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
-    return {
-        "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address.id)).data if order.delivery_address else None,
-        "items": GetCheckoutReviewItemsSerializer(order_details, many=True).data,
-        "payment": payable_amount,
-        "total": items_total,
-        "discount": items_total-payable_amount,
-        "delivery_charge": delivery_charge,
-        "availability_errors": check_items_with_pincodes(order_details) if order.delivery_address and is_cart else {},
-        "applied_coupon": order.applied_coupon.name if order.applied_coupon else ""
-    }
 
 
 @api_view(['GET'])
@@ -248,7 +236,7 @@ def get_checkout_details(request, name=None):
         delivery_charge = get_delivery_charge(items_total, cart_order)
         payable_amount = get_payable_amount(
             order_items_in_cart, items_total, coupon) + delivery_charge
-        data = format_order_items(
+        data = _format_order_items(
             cart_order, order_items_in_cart, items_total, payable_amount, delivery_charge, True)
         return Response(data)
     else:
@@ -305,7 +293,7 @@ def get_total_bill_for_category(order_details, coupon):
     return amount
 
 
-def format_order_items(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
+def _format_order_items(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
     return {
         "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address.id)).data if order.delivery_address else None,
         "items": GetCheckoutReviewItemsSerializer(order_details, many=True).data,

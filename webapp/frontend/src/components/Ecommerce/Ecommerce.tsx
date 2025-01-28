@@ -176,14 +176,16 @@ const Ecommerce = () => {
                               <CardContent className={"cardContent"}>
                                 <Typography className={"name"}>
                                   <div>{item.name}</div>
-                                  <div className={"yash"}>MRP: {item.mrp}</div>
+                                  <div className={"yash"}>
+                                    MRP: {item.price}
+                                  </div>
                                 </Typography>
                                 <Typography
                                   gutterBottom
                                   component="h3"
                                   className={"name"}
                                 >
-                                  <div>Rebate Price: </div>
+                                  <div>Offer Price: </div>
                                   <div>{item.offerPrice}</div>
                                 </Typography>
                                 <Typography gutterBottom component="h5">

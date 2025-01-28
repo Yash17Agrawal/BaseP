@@ -2,12 +2,14 @@ from decimal import Decimal
 
 
 class Product:
-    def __init__(self, name: str, price: float, description: str = None, is_active: bool = True, stock: int = 0):
+    def __init__(self, name: str, price: float, vendor_id: int, description: str = None, is_active: bool = True, stock: int = 0, category_id: int = None):
         self.name = name
         self.price = price
         self.description = description
         self.is_active = is_active
         self.stock = stock
+        self.vendor_id = vendor_id
+        self.category_id = category_id
 
     @classmethod
     def from_dict_w(cls, data: dict):

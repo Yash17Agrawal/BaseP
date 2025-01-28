@@ -15,11 +15,12 @@ class CategorySerializer(ModelSerializer):
 
 class ProductSerializer(ModelSerializer):
     category = CategorySerializer()
+    offer_price = serializers.CharField(source='price')
 
     class Meta:
         model = Product
         fields = ["name", "price", "description",
-                  "category", "is_active", "id"]
+                  "category", "is_active", "id", "offer_price"]
 
 
 class CreateProductSerializer(ModelSerializer):

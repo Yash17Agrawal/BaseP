@@ -12,7 +12,6 @@ class Payment(BaseModel):
     vendor = models.ForeignKey(
         Vendor, on_delete=models.CASCADE, related_name="payments")
     amount = models.DecimalField(max_digits=12, decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True)
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
         ("SUCCESS", "Success"),
