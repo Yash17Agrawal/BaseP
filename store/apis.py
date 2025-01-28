@@ -8,6 +8,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from core.utilities import common_pagination
 from store.models import Address, Category, Coupon, Customer, GenericGroup, Order, OrderItem
+from store.repositories.customer_repository import CustomerRepository
+from store.services.customer_service import CustomerService
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
 from store.serializers import AddressSerializer, CategorySerializer, CreateAddressSerializer, CreateCartSerializer, GetCartSerializer, GetCheckoutReviewItemsSerializer, GetOrdersDataSerializer, GetOrdersSerializer, ProductSerializer, CreateProductSerializer, PartialUpdateProductSerializer
@@ -19,6 +21,7 @@ from store.tasks import my_task
 
 #                   App Layer ( Infra Layer )
 product_service = ProductService(ProductRepository())
+customer_service = CustomerService(CustomerRepository())
 
 logger = logging.getLogger(__package__)
 
@@ -72,7 +75,7 @@ class ProductAPIView(APIView):
 class OrdersAPIView(APIView):
     def get(self, request, order_id):
         order = Order.objects.filter(
-            customer=Customer.objects.get(user=1), id=order_id).first()
+            customer=1, id=order_id).first()
         if order:
             order_details = OrderItem.objects.filter(order=order)
             data = _format_order_items(order, order_details,
@@ -323,11 +326,12 @@ class UserAddress(APIView):
     @staticmethod
     def get_user():
         # TODO: replace with request.user
-        return Customer.objects.get(user=1)
+        return 1
 
     def post(self, request):
         data = request.data
-        data['customer'] = self.get_user().id
+        data['customer'] = customer_service.customer_repository.get_by_id(
+            self.get_user()).id
         create_address_serializer = CreateAddressSerializer(data=data)
         if create_address_serializer.is_valid():
             create_address_serializer.save()
@@ -362,7 +366,7 @@ def update_user_cart_address(request):
     charge = 50
     if delivery_charges:
         charge = delivery_charges.data.get(str(address.pincode))
-    Order.objects.filter(customer=Customer.objects.get(user=1), status=Order.PENDING).update(
+    Order.objects.filter(customer=1, status=Order.PENDING).update(
         delivery_address_id=request.data['delivery_address'], delivery_charge=charge)
     return Response(status=status.HTTP_200_OK)
 
