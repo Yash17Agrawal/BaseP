@@ -1,0 +1,1829 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2025-01-27T01:32:15.937Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "1",
+      "object_repr": "admin",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2025-01-27T01:32:27.214Z",
+      "user": 1,
+      "content_type": 16,
+      "object_id": "1",
+      "object_repr": "v1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2025-01-27T01:32:40.367Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "test1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2025-01-27T01:32:51.158Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "1",
+      "object_repr": "P1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2025-01-27T01:33:38.779Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "vendor2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2025-01-27T01:33:50.552Z",
+      "user": 1,
+      "content_type": 16,
+      "object_id": "2",
+      "object_repr": "v2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2025-01-27T01:34:04.896Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "2",
+      "object_repr": "P2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2025-01-29T01:28:09.208Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "yash",
+      "object_repr": "yash",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2025-01-29T01:34:42.444Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "31",
+      "object_repr": "Order #31 by admin",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2025-01-29T01:39:02.530Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "32",
+      "object_repr": "Order #32 by admin",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2025-01-29T01:46:04.437Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "1",
+      "object_repr": "P1",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Is active\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2025-01-29T01:46:51.947Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Electornics",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2025-01-29T01:47:14.300Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "1",
+      "object_repr": "Referigerator",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Description\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2025-01-29T01:47:32.521Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "2",
+      "object_repr": "OLED TV",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Description\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2025-01-29T01:47:43.549Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "3",
+      "object_repr": "Pendrive",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Description\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2025-01-29T01:48:02.486Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Electronics",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add payment",
+      "content_type": 7,
+      "codename": "add_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change payment",
+      "content_type": 7,
+      "codename": "change_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete payment",
+      "content_type": 7,
+      "codename": "delete_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view payment",
+      "content_type": 7,
+      "codename": "view_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add category",
+      "content_type": 8,
+      "codename": "add_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change category",
+      "content_type": 8,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete category",
+      "content_type": 8,
+      "codename": "delete_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view category",
+      "content_type": 8,
+      "codename": "view_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add generic group",
+      "content_type": 9,
+      "codename": "add_genericgroup"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change generic group",
+      "content_type": 9,
+      "codename": "change_genericgroup"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete generic group",
+      "content_type": 9,
+      "codename": "delete_genericgroup"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view generic group",
+      "content_type": 9,
+      "codename": "view_genericgroup"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add coupon",
+      "content_type": 10,
+      "codename": "add_coupon"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change coupon",
+      "content_type": 10,
+      "codename": "change_coupon"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete coupon",
+      "content_type": 10,
+      "codename": "delete_coupon"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view coupon",
+      "content_type": 10,
+      "codename": "view_coupon"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add customer",
+      "content_type": 11,
+      "codename": "add_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change customer",
+      "content_type": 11,
+      "codename": "change_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete customer",
+      "content_type": 11,
+      "codename": "delete_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view customer",
+      "content_type": 11,
+      "codename": "view_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add address",
+      "content_type": 12,
+      "codename": "add_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change address",
+      "content_type": 12,
+      "codename": "change_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete address",
+      "content_type": 12,
+      "codename": "delete_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view address",
+      "content_type": 12,
+      "codename": "view_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add order",
+      "content_type": 13,
+      "codename": "add_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change order",
+      "content_type": 13,
+      "codename": "change_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete order",
+      "content_type": 13,
+      "codename": "delete_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view order",
+      "content_type": 13,
+      "codename": "view_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add product",
+      "content_type": 14,
+      "codename": "add_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change product",
+      "content_type": 14,
+      "codename": "change_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete product",
+      "content_type": 14,
+      "codename": "delete_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view product",
+      "content_type": 14,
+      "codename": "view_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+      "name": "Can add order item",
+      "content_type": 15,
+      "codename": "add_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+      "name": "Can change order item",
+      "content_type": 15,
+      "codename": "change_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+      "name": "Can delete order item",
+      "content_type": 15,
+      "codename": "delete_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+      "name": "Can view order item",
+      "content_type": 15,
+      "codename": "view_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+      "name": "Can add vendor",
+      "content_type": 16,
+      "codename": "add_vendor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+      "name": "Can change vendor",
+      "content_type": 16,
+      "codename": "change_vendor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+      "name": "Can delete vendor",
+      "content_type": 16,
+      "codename": "delete_vendor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+      "name": "Can view vendor",
+      "content_type": 16,
+      "codename": "view_vendor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+      "name": "Can add shipment",
+      "content_type": 17,
+      "codename": "add_shipment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+      "name": "Can change shipment",
+      "content_type": 17,
+      "codename": "change_shipment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+      "name": "Can delete shipment",
+      "content_type": 17,
+      "codename": "delete_shipment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+      "name": "Can view shipment",
+      "content_type": 17,
+      "codename": "view_shipment"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$PRq0pi57hpT4CXP6p9eJBG$cGhij49yrsr9XRzEBDHtfMXyrtxO14vnEdPiZEO7k9s=",
+      "last_login": "2025-01-27T01:31:40.011Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-01-27T01:31:31.102Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$PPfFgCdnYBByr8wHq97vyF$fHCB75POGJK6ZZAsKZD+nmtDcqEng2FtvSaWjBviWpc=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "vendor2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-01-27T01:33:38.558Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": { "app_label": "admin", "model": "logentry" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": { "app_label": "auth", "model": "permission" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": { "app_label": "auth", "model": "group" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": { "app_label": "auth", "model": "user" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": { "app_label": "sessions", "model": "session" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": { "app_label": "payment", "model": "payment" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": { "app_label": "store", "model": "category" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "store", "model": "genericgroup" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": { "app_label": "store", "model": "coupon" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": { "app_label": "store", "model": "customer" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": { "app_label": "store", "model": "address" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": { "app_label": "store", "model": "order" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": { "app_label": "store", "model": "product" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": { "app_label": "store", "model": "orderitem" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": { "app_label": "store", "model": "vendor" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": { "app_label": "store", "model": "shipment" }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "xttlne5y04vs95kagdp2wue6xrs1jh7f",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln2-pelpOcMlu1dcAA5UpxUiLuTSCmgfTPz3iKmdalx7TzHkcRZaHH63XIqT247oEdq90mWqS3zmOWuyIN2eZ2IX5fD_TuoqdethpCAbgote6IB0WR2npwjjxq1KhoGNBosMNuggIM3oNUWZKCSTBafL8iMNxA:1tcDyW:CCeBtRGj8CA1sxtg-rFvYMDuZXckCgHjo-tQT9frxnU",
+      "expire_date": "2025-02-10T01:31:40.013Z"
+    }
+  },
+  {
+    "model": "store.vendor",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:32:27.210Z",
+      "modified_at": "2025-01-27T01:32:27.210Z",
+      "user": 1,
+      "name": "v1",
+      "email": "yash17agrawal@gmail.com",
+      "phone_number": "09971910688",
+      "address": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2"
+    }
+  },
+  {
+    "model": "store.vendor",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-01-27T01:33:50.551Z",
+      "modified_at": "2025-01-27T01:33:50.551Z",
+      "user": 2,
+      "name": "v2",
+      "email": "yash17agrawal2@gmail.com",
+      "phone_number": "09971910688",
+      "address": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:32:40.364Z",
+      "modified_at": "2025-01-29T01:48:02.484Z",
+      "name": "Electronics",
+      "slug": "elec"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:32:51.154Z",
+      "modified_at": "2025-01-29T01:47:14.292Z",
+      "vendor": 1,
+      "category": 1,
+      "name": "Referigerator",
+      "description": "XYZ Brand 240LT",
+      "price": "1000.00",
+      "stock": 100,
+      "image": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-01-27T01:34:04.895Z",
+      "modified_at": "2025-01-29T01:47:32.518Z",
+      "vendor": 2,
+      "category": 1,
+      "name": "OLED TV",
+      "description": "ABC 84 inches",
+      "price": "1020.00",
+      "stock": 202,
+      "image": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-01-28T14:22:22.818Z",
+      "modified_at": "2025-01-29T01:47:43.547Z",
+      "vendor": 1,
+      "category": 1,
+      "name": "Pendrive",
+      "description": "256GB",
+      "price": "100.00",
+      "stock": 100,
+      "image": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.customer",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:32:15.933Z",
+      "modified_at": "2025-01-27T01:32:15.933Z",
+      "user": 1,
+      "phone_number": "9971910688"
+    }
+  },
+  {
+    "model": "store.coupon",
+    "pk": "yash",
+    "fields": {
+      "created_at": "2025-01-29T01:28:09.204Z",
+      "modified_at": "2025-01-29T01:28:09.204Z",
+      "category": 1,
+      "percentage": "10.00",
+      "max_discount": "100.00",
+      "min_amount": "0.00"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:39:47.757Z",
+      "modified_at": "2025-01-27T01:39:47.757Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "yash",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "",
+      "pincode": 281004,
+      "phone": "99719106787"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-01-28T14:29:48.419Z",
+      "modified_at": "2025-01-28T14:29:48.419Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "adree2",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "",
+      "pincode": 281004,
+      "phone": "09971910688"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-01-28T15:23:56.186Z",
+      "modified_at": "2025-01-28T15:23:56.186Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "asd4",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "",
+      "pincode": 281004,
+      "phone": "09971910688"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-01-28T16:22:27.299Z",
+      "modified_at": "2025-01-28T16:22:27.299Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "shipra",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "HSR Layout, Sector 4,",
+      "pincode": 281004,
+      "phone": "09971910688"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-01-28T16:40:18.252Z",
+      "modified_at": "2025-01-28T16:40:18.252Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "ss",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "HSR Layout, Sector 4,",
+      "pincode": 281004,
+      "phone": "09971910688"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-01-29T01:15:55.649Z",
+      "modified_at": "2025-01-29T01:15:55.649Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "hello",
+      "address_first_line": "NO: 459, 17th Cross, 14th main",
+      "address_second_line": "HSR Layout, Sector 4,",
+      "pincode": 560102,
+      "phone": "sdf"
+    }
+  },
+  {
+    "model": "store.address",
+    "pk": 7,
+    "fields": {
+      "created_at": "2025-01-29T01:51:00.154Z",
+      "modified_at": "2025-01-29T01:51:00.154Z",
+      "customer": 1,
+      "city": "Delhi",
+      "kind": "Home",
+      "name": "New address",
+      "address_first_line": "4/95 Shri Radhapuram Estate Mathura ,281004 Nh-2",
+      "address_second_line": "",
+      "pincode": 281004,
+      "phone": "09971910688"
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:37:15.432Z",
+      "modified_at": "2025-01-27T02:16:45.994Z",
+      "customer": 1,
+      "total_amount": "0.00",
+      "payment": "0.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoIUdUkQH1mqkx",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-01-27T02:25:31.876Z",
+      "modified_at": "2025-01-27T02:25:44.649Z",
+      "customer": 1,
+      "total_amount": "0.00",
+      "payment": "0.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoImucW3p0nFw1",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-01-27T16:40:14.092Z",
+      "modified_at": "2025-01-27T16:48:47.606Z",
+      "customer": 1,
+      "total_amount": "0.00",
+      "payment": "0.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXUWB7slp1yQW",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-01-27T16:51:22.157Z",
+      "modified_at": "2025-01-27T16:51:40.504Z",
+      "customer": 1,
+      "total_amount": "0.00",
+      "payment": "1020.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXXaf9wYsgEWn",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-01-27T16:53:15.604Z",
+      "modified_at": "2025-01-27T16:53:33.327Z",
+      "customer": 1,
+      "total_amount": "0.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXZa6emjNLaob",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-01-27T16:54:43.288Z",
+      "modified_at": "2025-01-27T16:54:55.609Z",
+      "customer": 1,
+      "total_amount": "1000.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXb4Wvbm623di",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 7,
+    "fields": {
+      "created_at": "2025-01-27T17:10:25.763Z",
+      "modified_at": "2025-01-27T17:14:23.383Z",
+      "customer": 1,
+      "total_amount": "1000.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXvb0XeFdlkT6",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 8,
+    "fields": {
+      "created_at": "2025-01-27T17:16:41.754Z",
+      "modified_at": "2025-01-27T17:16:51.382Z",
+      "customer": 1,
+      "total_amount": "1000.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoXyGG6L7O1NS4",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 9,
+    "fields": {
+      "created_at": "2025-01-27T17:38:19.113Z",
+      "modified_at": "2025-01-27T17:38:29.922Z",
+      "customer": 1,
+      "total_amount": "1000.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PoYL7MBb2gn3GG",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 11,
+    "fields": {
+      "created_at": "2025-01-28T14:29:21.472Z",
+      "modified_at": "2025-01-28T14:30:25.369Z",
+      "customer": 1,
+      "total_amount": "1120.00",
+      "payment": "1120.00",
+      "invoice_location": null,
+      "delivery_address": 2,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PotfNNov6KEsib",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 12,
+    "fields": {
+      "created_at": "2025-01-28T14:36:51.681Z",
+      "modified_at": "2025-01-28T14:37:06.694Z",
+      "customer": 1,
+      "total_amount": "1120.00",
+      "payment": "1120.00",
+      "invoice_location": null,
+      "delivery_address": 2,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PotmarZFIit38h",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 14,
+    "fields": {
+      "created_at": "2025-01-28T15:25:25.943Z",
+      "modified_at": "2025-01-28T15:25:41.934Z",
+      "customer": 1,
+      "total_amount": "1000.00",
+      "payment": "1000.00",
+      "invoice_location": null,
+      "delivery_address": 2,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_Poubuqx8pVBM06",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 19,
+    "fields": {
+      "created_at": "2025-01-28T16:40:07.682Z",
+      "modified_at": "2025-01-28T17:13:23.565Z",
+      "customer": 1,
+      "total_amount": "1120.00",
+      "payment": "1120.00",
+      "invoice_location": null,
+      "delivery_address": 3,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PowRhDUvcSogiP",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 22,
+    "fields": {
+      "created_at": "2025-01-28T17:20:29.026Z",
+      "modified_at": "2025-01-28T17:28:08.495Z",
+      "customer": 1,
+      "total_amount": "2120.00",
+      "payment": "2120.00",
+      "invoice_location": null,
+      "delivery_address": 4,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_PowhGrEbNCT1Mj",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 26,
+    "fields": {
+      "created_at": "2025-01-28T18:21:02.151Z",
+      "modified_at": "2025-01-29T00:52:24.191Z",
+      "customer": 1,
+      "total_amount": "2120.00",
+      "payment": "2120.00",
+      "invoice_location": null,
+      "delivery_address": 1,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_Pp4GTynJDAnyyY",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 28,
+    "fields": {
+      "created_at": "2025-01-29T01:15:45.564Z",
+      "modified_at": "2025-01-29T01:16:13.848Z",
+      "customer": 1,
+      "total_amount": "1020.00",
+      "payment": "1020.00",
+      "invoice_location": null,
+      "delivery_address": 4,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_Pp4fiKUlPxqmjA",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 34,
+    "fields": {
+      "created_at": "2025-01-29T01:39:16.325Z",
+      "modified_at": "2025-01-29T01:42:18.097Z",
+      "customer": 1,
+      "total_amount": "5080.00",
+      "payment": "5080.00",
+      "invoice_location": null,
+      "delivery_address": 4,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_Pp57GXooKlV3nZ",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.order",
+    "pk": 35,
+    "fields": {
+      "created_at": "2025-01-29T01:50:26.331Z",
+      "modified_at": "2025-01-29T01:51:40.691Z",
+      "customer": 1,
+      "total_amount": "2320.00",
+      "payment": "2320.00",
+      "invoice_location": null,
+      "delivery_address": 4,
+      "delivery_charge": 0,
+      "applied_coupon": null,
+      "status": "PAID",
+      "provider_order_id": "order_Pp5HAersUNoRid",
+      "task_id": null
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-01-27T01:37:15.441Z",
+      "modified_at": "2025-01-27T01:37:15.441Z",
+      "order": 1,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-01-27T02:25:31.896Z",
+      "modified_at": "2025-01-27T02:25:31.896Z",
+      "order": 2,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-01-27T16:40:14.105Z",
+      "modified_at": "2025-01-27T16:40:14.105Z",
+      "order": 3,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-01-27T16:51:22.164Z",
+      "modified_at": "2025-01-27T16:51:22.164Z",
+      "order": 4,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-01-27T16:53:15.610Z",
+      "modified_at": "2025-01-27T16:53:15.610Z",
+      "order": 5,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-01-27T16:54:43.293Z",
+      "modified_at": "2025-01-27T16:54:43.293Z",
+      "order": 6,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 7,
+    "fields": {
+      "created_at": "2025-01-27T17:10:25.769Z",
+      "modified_at": "2025-01-27T17:10:25.769Z",
+      "order": 7,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 8,
+    "fields": {
+      "created_at": "2025-01-27T17:16:41.764Z",
+      "modified_at": "2025-01-27T17:16:41.764Z",
+      "order": 8,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 9,
+    "fields": {
+      "created_at": "2025-01-27T17:38:19.119Z",
+      "modified_at": "2025-01-27T17:38:19.119Z",
+      "order": 9,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 11,
+    "fields": {
+      "created_at": "2025-01-28T14:29:21.480Z",
+      "modified_at": "2025-01-28T14:29:21.480Z",
+      "order": 11,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 12,
+    "fields": {
+      "created_at": "2025-01-28T14:29:23.743Z",
+      "modified_at": "2025-01-28T14:29:23.743Z",
+      "order": 11,
+      "product": 3,
+      "quantity": 1,
+      "price": "100.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 14,
+    "fields": {
+      "created_at": "2025-01-28T14:36:51.688Z",
+      "modified_at": "2025-01-28T14:36:51.688Z",
+      "order": 12,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 15,
+    "fields": {
+      "created_at": "2025-01-28T14:36:52.528Z",
+      "modified_at": "2025-01-28T14:36:52.528Z",
+      "order": 12,
+      "product": 3,
+      "quantity": 1,
+      "price": "100.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 17,
+    "fields": {
+      "created_at": "2025-01-28T15:25:25.949Z",
+      "modified_at": "2025-01-28T15:25:25.949Z",
+      "order": 14,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 23,
+    "fields": {
+      "created_at": "2025-01-28T16:40:07.689Z",
+      "modified_at": "2025-01-28T16:40:07.689Z",
+      "order": 19,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 24,
+    "fields": {
+      "created_at": "2025-01-28T16:40:08.557Z",
+      "modified_at": "2025-01-28T16:40:08.557Z",
+      "order": 19,
+      "product": 3,
+      "quantity": 1,
+      "price": "100.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 26,
+    "fields": {
+      "created_at": "2025-01-28T17:20:31.240Z",
+      "modified_at": "2025-01-28T17:20:31.240Z",
+      "order": 22,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 27,
+    "fields": {
+      "created_at": "2025-01-28T17:20:33.346Z",
+      "modified_at": "2025-01-28T17:20:33.346Z",
+      "order": 22,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 28,
+    "fields": {
+      "created_at": "2025-01-28T17:20:34.656Z",
+      "modified_at": "2025-01-28T17:20:34.656Z",
+      "order": 22,
+      "product": 3,
+      "quantity": 1,
+      "price": "100.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 35,
+    "fields": {
+      "created_at": "2025-01-28T18:21:02.159Z",
+      "modified_at": "2025-01-28T18:21:02.159Z",
+      "order": 26,
+      "product": 3,
+      "quantity": 1,
+      "price": "100.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 38,
+    "fields": {
+      "created_at": "2025-01-28T18:24:47.900Z",
+      "modified_at": "2025-01-28T18:24:47.900Z",
+      "order": 26,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 40,
+    "fields": {
+      "created_at": "2025-01-29T00:51:07.660Z",
+      "modified_at": "2025-01-29T00:51:07.660Z",
+      "order": 26,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 42,
+    "fields": {
+      "created_at": "2025-01-29T01:15:45.571Z",
+      "modified_at": "2025-01-29T01:15:45.571Z",
+      "order": 28,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 59,
+    "fields": {
+      "created_at": "2025-01-29T01:39:16.333Z",
+      "modified_at": "2025-01-29T01:41:59.230Z",
+      "order": 34,
+      "product": 2,
+      "quantity": 4,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 61,
+    "fields": {
+      "created_at": "2025-01-29T01:41:59.227Z",
+      "modified_at": "2025-01-29T01:41:59.227Z",
+      "order": 34,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 62,
+    "fields": {
+      "created_at": "2025-01-29T01:50:26.341Z",
+      "modified_at": "2025-01-29T01:50:34.811Z",
+      "order": 35,
+      "product": 1,
+      "quantity": 1,
+      "price": "1000.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 63,
+    "fields": {
+      "created_at": "2025-01-29T01:50:27.816Z",
+      "modified_at": "2025-01-29T01:50:34.815Z",
+      "order": 35,
+      "product": 2,
+      "quantity": 1,
+      "price": "1020.00"
+    }
+  },
+  {
+    "model": "store.orderitem",
+    "pk": 64,
+    "fields": {
+      "created_at": "2025-01-29T01:50:28.754Z",
+      "modified_at": "2025-01-29T01:50:34.820Z",
+      "order": 35,
+      "product": 3,
+      "quantity": 3,
+      "price": "100.00"
+    }
+  }
+]

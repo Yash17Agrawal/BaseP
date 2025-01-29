@@ -165,9 +165,9 @@ const Ecommerce = () => {
                         <Grid item key={item.id} xs={12} sm={6} md={3}>
                           <Card className={"item"}>
                             <CardActionArea
-                              onClick={() => {
-                                navigate(`/ecomm/item/${item.id}/`);
-                              }}
+                            // onClick={() => {
+                            //   navigate(`/ecomm/item/${item.id}/`);
+                            // }}
                             >
                               <LazyLoadImage
                                 visibleByDefault={true}

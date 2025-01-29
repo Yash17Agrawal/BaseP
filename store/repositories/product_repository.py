@@ -16,7 +16,7 @@ class ProductRepository(ProductRepositoryInterface):
         # return ProductEntity(product.name, product.price)
 
     def get_all(self):
-        return Product.objects.all()
+        return Product.objects.filter(is_active=True)
 
     def get_all_by_filter(self, keyword):
         return Product.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword), is_active=True)
