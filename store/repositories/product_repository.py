@@ -34,7 +34,7 @@ class ProductRepository(ProductRepositoryInterface):
 
         return product_model
 
-    def _convert_to_entity(self, product: Product):
+    def convert_to_entity(self, product: Product):
         return ProductEntity(product.name, product.price, product.vendor.id, product.description, product.is_active, product.stock, product.category.id)
 
     def update(self, product_id: int, product: ProductEntity):

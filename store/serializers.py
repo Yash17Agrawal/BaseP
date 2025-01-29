@@ -135,7 +135,7 @@ class CategorySerializer(ModelSerializer):
 
 
 class GetCartSerializer(ModelSerializer):
-    id = serializers.IntegerField(read_only=True, source='product.id')
+    id = serializers.IntegerField(read_only=True, source='product_id')
 
     class Meta:
         model = OrderItem

@@ -5,9 +5,9 @@ from celery import shared_task
 from django.db.transaction import atomic
 
 from store.models import Order, OrderItem
-from store.apis import get_delivery_charge, get_items_total, get_payable_amount
 
 import razorpay
+from store.services.order_item_service import OrderItemService
 
 logger = logging.getLogger(__package__)
 
@@ -76,9 +76,10 @@ def place_order(razorpay_order_id):
         # payment_object.signature_id = response['razorpay_signature']
         items_in_cart = OrderItem.objects.filter(
             order=placed_order).select_related('product')
-        items_total = get_items_total(items_in_cart)
-        delivery_charge = get_delivery_charge(items_total, placed_order)
-        payable_amount = get_payable_amount(
+        items_total = OrderItemService.get_items_total(items_in_cart)
+        delivery_charge = OrderItemService.get_delivery_charge(
+            items_total, placed_order)
+        payable_amount = OrderItemService.get_payable_amount(
             items_in_cart, items_total, placed_order.applied_coupon) + delivery_charge
         placed_order.status = "PAID"
         placed_order.total_amount = items_total

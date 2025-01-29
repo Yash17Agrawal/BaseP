@@ -7,10 +7,12 @@ from rest_framework.decorators import (api_view, authentication_classes,
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from core.utilities import common_pagination
-from store.models import Address, Category, Coupon, Customer, GenericGroup, Order, OrderItem
+from store.models import Address, Category, Coupon, Customer, GenericGroup, Order
 from store.repositories.customer_repository import CustomerRepository
+from store.repositories.order_item_repository import OrderItemRepository
 from store.repositories.order_repository import OrderRepository
 from store.services.customer_service import CustomerService
+from store.services.order_item_service import OrderItemService
 from store.services.order_service import OrderService
 from store.services.product_service import ProductService
 from store.repositories.product_repository import ProductRepository
@@ -25,6 +27,7 @@ from store.tasks import my_task
 product_service = ProductService(ProductRepository())
 customer_service = CustomerService(CustomerRepository())
 order_service = OrderService(OrderRepository())
+order_item_service = OrderItemService(OrderItemRepository())
 
 logger = logging.getLogger(__package__)
 
@@ -79,7 +82,7 @@ class OrdersAPIView(APIView):
     def get(self, request, order_id):
         order = order_service.get_by_id(1, order_id)
         if order:
-            order_details = OrderItem.objects.filter(order=order.id)
+            order_details = order_item_service.get_items_by_order_id(order.id)
             data = _format_order_items(order, order_details,
                                        order.total_amount, order.payment, order.delivery_charge, False)
             return Response(data)
@@ -92,6 +95,7 @@ class OrdersAPIView(APIView):
         if get_orders_serializer.is_valid():
             page_size = payload['page_size']
             page_no = payload['page_no']
+            # TODO: Replace this with service based implementation
             response = common_pagination(
                 Order, page_size, page_no, GetOrdersDataSerializer, {}, {}, {"status": Order.PENDING})
             return Response(response)
@@ -134,8 +138,7 @@ class CartAPIs(APIView):
     def get(self, request):
         order = self._get_cart_order(self.get_user())
         if order:
-            items_in_cart = OrderItem.objects.filter(
-                order=order.id)
+            items_in_cart = order_item_service.get_items_by_order_id(order.id)
         else:
             items_in_cart = None
         return Response(GetCartSerializer(items_in_cart, many=True).data)
@@ -160,10 +163,11 @@ class CartAPIs(APIView):
         create_cart_serializer = self._create_cart_order_detail(
             all_data, many=True)
         if create_cart_serializer.is_valid():
-            return Response(GetCartSerializer(OrderItem.objects.filter(order=cart_order.id), many=True).data, status=status.HTTP_201_CREATED)
+            return Response(GetCartSerializer(order_item_service.get_items_by_order_id(cart_order.id), many=True).data, status=status.HTTP_201_CREATED)
         logger.warn(data)
         raise Exception(create_cart_serializer.errors)
 
+    # TODO: Replace this with bulk update from service
     def _update(self, data, cart_order, user):
         if data['items'] == []:
             order_service.delete_order(user)
@@ -176,17 +180,20 @@ class CartAPIs(APIView):
             item_id_to_details[item['id']] = {
                 'quantity': item['quantity'], 'price': 0}
             item_ids.append(item['id'])
-        cart_order_details = OrderItem.objects.filter(order=cart_order.id)
-        cart_order_details.exclude(product__id__in=item_ids).delete()
+        cart_order_details = order_item_service.get_items_by_order_id(
+            cart_order.id)
+        # Delete unwanted items from cart
+        order_item_service.delete_items_by_order_id_exluding_few(
+            cart_order.id, item_ids)
         logger.info("Deleted unwanted cart items")
         # Assuming cart order details will definitely exist when cart order was found in parent function
         # TODO: Optimize this
         for item_id in item_ids:
-            cart_order_detail_obj = cart_order_details.filter(
-                product__id=item_id)
+            cart_order_detail_obj = order_item_service.get_item_by_product_id(
+                item_id)
             if cart_order_detail_obj:
-                cart_order_detail_obj.update(
-                    quantity=item_id_to_details[item_id]['quantity'])
+                order_item_service.update_order_item(
+                    cart_order_detail_obj, **{"quantity": item_id_to_details[item_id]['quantity']})
             else:
                 data_to_create = {}
                 data_to_create['order'] = cart_order.id
@@ -220,11 +227,12 @@ def get_checkout_details(request, name=None):
         #     logger.debug(
         #         "Updating User Cart order with coupon {}".format(coupon))
         #     cart_order.save()
-        order_items_in_cart = OrderItem.objects.filter(
-            order=cart_order.id).select_related('product')
-        items_total = get_items_total(order_items_in_cart)
-        delivery_charge = get_delivery_charge(items_total, cart_order)
-        payable_amount = get_payable_amount(
+        order_items_in_cart = order_item_service.get_items_by_order_id(
+            cart_order.id)
+        items_total = order_item_service.get_items_total(order_items_in_cart)
+        delivery_charge = order_item_service.get_delivery_charge(
+            items_total, cart_order)
+        payable_amount = order_item_service.get_payable_amount(
             order_items_in_cart, items_total, coupon) + delivery_charge
         data = _format_order_items(
             cart_order, order_items_in_cart, items_total, payable_amount, delivery_charge, True)
@@ -233,63 +241,13 @@ def get_checkout_details(request, name=None):
         return Response(data="No cart Item Found", status=status.HTTP_204_NO_CONTENT)
 
 
-'''
-    Get total bill without discount
-'''
-
-
-def get_items_total(order_details):
-    amount = 0
-    if len(order_details) == 0:
-        return 0
-    for order_detail in order_details:
-        amount += (order_detail.product.price * order_detail.quantity)
-    return amount
-
-
-def get_delivery_charge(amount, order):
-    if amount > 500 or amount == 0:
-        return 0
-    else:
-        return order.delivery_charge
-
-
-def get_payable_amount(order_details, total_amount, check_with_coupon):
-    if total_amount == 0 or len(order_details) == 0:
-        return total_amount
-    order_detail_obj = order_details[0]
-    if check_with_coupon:
-        applied_coupon = check_with_coupon
-    else:
-        applied_coupon = order_detail_obj.order.applied_coupon
-    coupon_category_total_amount = get_total_bill_for_category(
-        order_details, applied_coupon)
-    if applied_coupon and coupon_category_total_amount > applied_coupon.min_amount:
-        percentage_discount_amount = (
-            applied_coupon.percentage * coupon_category_total_amount)//100
-        final_discount_amount = min(
-            percentage_discount_amount, applied_coupon.max_discount)
-        return (total_amount - coupon_category_total_amount) + (coupon_category_total_amount - final_discount_amount)
-    return total_amount
-
-
-def get_total_bill_for_category(order_details, coupon):
-    amount = 0
-    if coupon:
-        for order_detail in order_details:
-            if order_detail.product.category == coupon.category:
-                amount += (order_detail.product.price *
-                           order_detail.quantity)
-    return amount
-
-
 def _format_order_items(order, order_details, items_total, payable_amount, delivery_charge, is_cart):
     return {
         "delivery_address": AddressSerializer(Address.objects.get(id=order.delivery_address_id)).data if order.delivery_address_id else None,
         "items": GetCheckoutReviewItemsSerializer(order_details, many=True).data,
         "payment": payable_amount,
         "total": items_total,
-        "discount": items_total-payable_amount,
+        "discount": items_total-payable_amount if items_total-payable_amount > 0 else 0,
         "delivery_charge": delivery_charge,
         "availability_errors": check_items_with_pincodes(order_details) if order.delivery_address_id and is_cart else {},
         "applied_coupon": order.applied_coupon.name if order.applied_coupon else ""
