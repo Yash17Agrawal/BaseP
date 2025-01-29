@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Address, Category, Customer, Order, OrderItem, Product, Shipment, Vendor
+from store.models import Address, Category, Coupon, Customer, Order, OrderItem, Product, Shipment, Vendor
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -24,3 +24,4 @@ admin.site.register(Customer)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(Shipment)
+admin.site.register(Coupon)

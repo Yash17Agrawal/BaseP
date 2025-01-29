@@ -10,7 +10,7 @@ class OrderItemRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def get_item_by_product_id(self, id: int):
+    def get_item_by_product_id(self, id: int, order_id: int):
         """Retrieve order item by product ID"""
         pass
 

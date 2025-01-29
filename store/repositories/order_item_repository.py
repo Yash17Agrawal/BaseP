@@ -21,12 +21,12 @@ class OrderItemRepository(OrderItemRepositoryInterface):
         except ObjectDoesNotExist:
             return None
 
-    def get_item_by_product_id(self, id: int):
+    def get_item_by_product_id(self, id: int, order_id: int):
         try:
-            return self.convert_to_entity(OrderItem.objects.get(product__id=id))
+            return self.convert_to_entity(OrderItem.objects.get(product__id=id, order__id=order_id))
         except ObjectDoesNotExist:
             return None
-        except Order.MultipleObjectsReturned:
+        except OrderItem.MultipleObjectsReturned:
             logger.error(
                 "Multiple cart order exist for a user, System Discrepancy Found")
             return None

@@ -190,7 +190,8 @@ class CartAPIs(APIView):
         # TODO: Optimize this
         for item_id in item_ids:
             cart_order_detail_obj = order_item_service.get_item_by_product_id(
-                item_id)
+                item_id,
+                cart_order.id)
             if cart_order_detail_obj:
                 order_item_service.update_order_item(
                     cart_order_detail_obj, **{"quantity": item_id_to_details[item_id]['quantity']})
@@ -210,7 +211,8 @@ class CartAPIs(APIView):
                         "Invalid data while creating new items in user cart order details")
                     raise Exception(create_cart_serializer.errors)
                     # return Response(data=create_cart_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(GetCartSerializer(cart_order_details, many=True).data)
+        return Response(GetCartSerializer(order_item_service.get_items_by_order_id(
+            cart_order.id), many=True).data)
 
 
 @api_view(['GET'])

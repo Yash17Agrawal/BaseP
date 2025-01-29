@@ -67,13 +67,9 @@ class OrderItemService:
         self.order_item_repository.delete_items_by_order_id_exluding_few(
             order_id, item_ids_to_exclude)
 
-    def get_item_by_product_id(self, id: int):
-        return self.order_item_repository.get_item_by__product_id(id)
+    def get_item_by_product_id(self, id: int, order_id: int) -> OrderItem:
+        return self.order_item_repository.get_item_by_product_id(id, order_id)
 
     def update_order_item(self, order_item_entity: OrderItem, **data: dict) -> None:
         self.order_item_repository.update_order_item(
             OrderItem.update_order_entity(data, order_item_entity))
-
-    def update_order_item(self, data: dict, cart_order, user) -> None:
-        # TODO: implement this method by removing the pass statement adn _update implementation in controller apis.py
-        pass
